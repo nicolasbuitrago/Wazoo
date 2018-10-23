@@ -8,13 +8,22 @@ router.get('/',(req,res,next) =>{
 	})
 })
 router.post('/registration',(req,res,next) =>{
-	let user = new UserModel()
-	user.username = req.body.username
-	user.password = req.body.password
-	user.save((err,userStored)=>{
-		if(err) res.status(500).send({message:'Ups! Something went wrong trying to register a new user'})
-		res.status(200).send({user:userStored})
+	var user = req.body;
+	UserModel.findOne({username:user.username},function(err,existingUser){
+		if(existingUser == null){
+			let newUser = new UserModel()
+			newUser.username = user.username
+			newUser.password = user.password
+			newUser.save((err,userStored)=>{
+				if(err) res.status(500).send({message:'Ups! Something went wrong trying to register a new user'})
+				res.status(200).send({user:userStored})
+			})
+
+		}else{
+			res.status(409).send({message:'User already exists!'})
+		}
 	})
+
 
 })
 module.exports = router

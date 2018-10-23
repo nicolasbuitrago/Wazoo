@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
 const UserRoutes = require('./routes/user')
+const RestaurantRoutes = require('./routes/restaurant')
 
 
 app.use(bodyParser.json())
@@ -23,8 +24,10 @@ app.use((req,res,next) => {
 })
 
 app.use('/user', UserRoutes)
+app.use('/restaurant', RestaurantRoutes)
 
-mongoose.connect('mongodb://USER:PASS@ds025419.mlab.com:25419/databasejs',{ useNewUrlParser: true },(err,res)=>{
+
+mongoose.connect('mongodb://dacuentas:dacuentas007@ds025419.mlab.com:25419/databasejs',{ useNewUrlParser: true },(err,res)=>{
 	if(err) return console.log("Couldn't connect to database")
 
 	const server = app.listen(3000, function () {
