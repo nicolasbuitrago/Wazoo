@@ -22,7 +22,11 @@ app.use((req,res,next) => {
 	console.log('dtest');
 	next();
 
-})
+});
+
+app.get('/', function(req, res) {
+	res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 
 app.use('/user', UserRoutes);
 app.use('/restaurant', RestaurantRoutes);

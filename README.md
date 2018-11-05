@@ -1,4 +1,4 @@
-#Wazoo
+# Wazoo
 App that allows you to locate the perfect restaurant for your needs.
 
 ## Getting Started
