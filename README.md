@@ -1,3 +1,24 @@
+#Wazoo
+App that allows you to locate the perfect restaurant for your needs.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Installing
+
+Clone this repo using
+
+```
+git clone https://github.com/DavidCuentasMar/Wazoo.git
+```
+
+Then
+
+```
+npm install
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -34,3 +55,12 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Authors
+
+* **Nicolas Buitrago** - GitHub : [nicolasbuitrago](https://github.com/nicolasbuitrago)
+* **William Cadenas** - GitHub : [WilliamCadenas21](https://github.com//WilliamCadenas21)
+* **Jhon Cerpa** - GitHub : [j0hnc](https://github.com/j0hnc)
+* **David Cuentas** - GitHub : [DavidCuentasMar](https://github.com/DavidCuentasMar)
+
+See also the list of [contributors](https://github.com/DavidCuentasMar/Wazoo/contributors) who participated in this project.
