@@ -4,7 +4,7 @@ import rests from '../restaurants'
 class Restaurant extends React.Component {
     render() {
         return (
-        <div className='item'>
+        <div id={'item-'+this.props.id} className='item'>
             <a href='#' className='title'>{this.props.name}</a>
         </div>
         );
@@ -30,7 +30,7 @@ class List extends React.Component {
             // writing this long form over and over again.
             var prop = currentFeature.properties;
 
-            list.push(<Restaurant name={prop.name}></Restaurant>);
+            list.push(<Restaurant id={i} name={prop.name}></Restaurant>);
         }
         return list;
     }
