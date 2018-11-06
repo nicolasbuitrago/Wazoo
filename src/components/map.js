@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl'
 
 import rests from '../restaurants' 
 
+
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
 
 // This will let you use the .remove() function later on
@@ -16,7 +17,7 @@ if (!('remove' in Element.prototype)) {
 
 class Map extends React.Component {
 
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
     this.state = {
       lng: -74.8090,
@@ -82,8 +83,8 @@ class Map extends React.Component {
         var popup = new mapboxgl.Popup({ closeOnClick: false })
             .setLngLat(clickedPoint.geometry.coordinates)
             .setHTML('<h3>'+clickedPoint.properties.name+'</h3>' +
-              '<h4>' + clickedPoint.properties.address + '</h4>')
-            .addTo(map);
+              '<h4>' + clickedPoint.properties.address + '</h4>');
+        popup.addTo(map);
         // 3. Highlight listing in sidebar (and remove highlight for all other listings)
         var activeItem = document.getElementsByClassName('active');
         if (activeItem[0]) {
@@ -118,7 +119,5 @@ class Map extends React.Component {
     );
   }
 }
-
-
 
 export default Map;

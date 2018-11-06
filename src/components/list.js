@@ -39,7 +39,7 @@ class List extends React.Component {
     return (
     <div class='sidebar'>
         <div class='heading'>
-            <h1>Our locations</h1>
+            <h1>Restaurantes</h1>
         </div>
         <div id='listings' class='listings'>{this.createList()}</div>
     </div>
