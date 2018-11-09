@@ -8,8 +8,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <List ></List>
-        <Map></Map>
+        <List/>
+        <Map/>
       </div>
     );
   }
