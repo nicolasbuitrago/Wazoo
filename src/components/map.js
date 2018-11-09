@@ -26,7 +26,7 @@ class Map extends React.Component {
     };
   }
 
-  componentDidMount() {
+  createMap(){
     const { lng, lat, zoom } = this.state;
 
     const map = new mapboxgl.Map({
@@ -35,6 +35,12 @@ class Map extends React.Component {
       center: [lng, lat],
       zoom
     });
+    this.props.setMap(map);
+    return map;
+  }
+
+  componentDidMount() {
+    const map = 
 
     map.on('load', function(e) {
       // Add the data to your map as a layer
@@ -110,12 +116,16 @@ class Map extends React.Component {
     const { lng, lat, zoom } = this.state;
 
     return (
-      <div class='map pad2'>
-        <div className="inline-block absolute top left mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
-          <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
+      <div>
+        
+        <div class='map pad2'>
+          <div className="inline-block absolute top left mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
+            <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
+          </div>
+          <div ref={el => this.mapContainer = el} className="absolute top right left bottom" />
         </div>
-        <div ref={el => this.mapContainer = el} className="absolute top right left bottom" />
       </div>
+      
     );
   }
 }
