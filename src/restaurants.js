@@ -25,7 +25,7 @@ var restaurants = {
       {
         "type": "Feature",
         "properties": {
-          "name": "La terraza",
+          "name": "La Terraza",
           "phoneFormatted": "(202) 234-7336",
           "phone": "2022347336",
           "address": "1471 P St NW",
