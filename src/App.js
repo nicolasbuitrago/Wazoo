@@ -65,13 +65,12 @@ class App extends React.Component {
           var activeItem = document.getElementsByClassName('active');
           // 1. Fly to the point
           flyAndPopUp(marker);
-          // 3. Highlight listing in sidebar (and remove highlight for all other listings)
+          // 3. Highlight listing in sidebar (and remove highlight for all other item)
           e.stopPropagation();
           if (activeItem[0]) {
             activeItem[0].classList.remove('active');
           }
-          var listing = document.getElementById('listing-' + i);
-          console.log(listing);
+          var listing = document.getElementById('item-' + i);
           listing.classList.add('active');
         });
         
@@ -115,7 +114,7 @@ class App extends React.Component {
         .setHTML('<h3>'+clickedPoint.properties.name+'</h3>' +
           '<h4>' + clickedPoint.properties.address + '</h4>');
     popup.addTo(map);
-    // 3. Highlight listing in sidebar (and remove highlight for all other listings)
+    // 3. Highlight listing in sidebar (and remove highlight for all other items)
     var activeItem = document.getElementsByClassName('active');
     if (activeItem[0]) {
       activeItem[0].classList.remove('active');
