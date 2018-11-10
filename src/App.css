@@ -52,7 +52,8 @@ a:hover {
 }
 
 .heading {
-  background: #fff;
+  background: #00853e;
+  color: #fff;
   border-bottom: 1px solid #eee;
   height: 60px;
   line-height: 60px;
@@ -145,7 +146,7 @@ a:hover {
   margin: 0;
   display: block;
   padding: 10px;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .mapboxgl-popup-content div {
