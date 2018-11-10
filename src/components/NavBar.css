@@ -1,0 +1,14 @@
+.navBar{
+    width: 100%;
+    left: 0;
+}
+
+.navBar img{
+    display: inline-block;
+    padding: 10px 0 0 10px;
+}
+
+.navBar h1{
+    display: inline-block;
+    padding-left: 10px;
+}
