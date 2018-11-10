@@ -62,16 +62,16 @@ class App extends React.Component {
         // Add a class called 'marker' to each div
         el.className = 'marker';
         el.addEventListener('click', function(e) {
-          var activeItem = document.getElementsByClassName('active');
+          // var activeItem = document.getElementsByClassName('active');
           // 1. Fly to the point
           flyAndPopUp(marker);
           // 3. Highlight listing in sidebar (and remove highlight for all other item)
           e.stopPropagation();
-          if (activeItem[0]) {
-            activeItem[0].classList.remove('active');
-          }
-          var listing = document.getElementById('item-' + i);
-          listing.classList.add('active');
+          // if (activeItem[0]) {
+          //   activeItem[0].classList.remove('active');
+          // }
+          // var listing = document.getElementById('item-' + i);
+          // listing.classList.add('active');
         });
         
         
