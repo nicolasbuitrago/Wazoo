@@ -81,7 +81,38 @@ class App extends React.Component {
       if (features.length) {
         var clickedPoint = features[0];
         
-        this.flyAndPopUp(clickedPoint);
+        // 1. Fly to the point
+        map.flyTo({
+          center: clickedPoint.geometry.coordinates,
+          zoom: 15
+        });
+        // 2. Close all other popups and display popup for clicked store
+
+        var popUps = document.getElementsByClassName('mapboxgl-popup');
+        // Check if there is already a popup on the map and if so, remove it ReactDOM.unmountComponentAtNode(popUps[0]);
+        if (popUps[0]) popUps[0].remove();
+
+        var popup = new mapboxgl.Popup({ closeOnClick: false })
+            .setLngLat(clickedPoint.geometry.coordinates)
+            .setHTML('<h3>'+clickedPoint.properties.name+'</h3>' +
+              '<h4>' + clickedPoint.properties.address + '</h4>');
+        popup.addTo(map);
+        // 3. Highlight listing in sidebar (and remove highlight for all other listings)
+        var activeItem = document.getElementsByClassName('active');
+        if (activeItem[0]) {
+          activeItem[0].classList.remove('active');
+        }
+        // Find the index of the store.features that corresponds to the clickedPoint that fired the event listener
+        var selectedFeature = clickedPoint.properties.name;
+        var selectedFeatureIndex;
+        for (var i = 0; i < rests.features.length; i++) {
+          if (rests.features[i].properties.name === selectedFeature) {
+            selectedFeatureIndex = i;
+          }
+        }
+        // Select the correct list item using the found index and add the active class
+        var listing = document.getElementById('item-' + selectedFeatureIndex);
+        listing.classList.add('active');
 
       }
     });
