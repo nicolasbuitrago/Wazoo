@@ -95,6 +95,17 @@ class App extends React.Component {
       });
     });
 
+    map.on('click', () => {
+      var activeItem = document.getElementsByClassName('active');
+    if (activeItem[0]) {
+      activeItem[0].classList.remove('active');
+    }
+
+      var popUps = document.getElementsByClassName('mapboxgl-popup');
+      // Check if there is already a popup on the map and if so, remove it ReactDOM.unmountComponentAtNode(popUps[0]);
+      if (popUps[0]) popUps[0].remove();
+    });
+
   }
 
   flyAndPopUp=(clickedPoint)=>{
