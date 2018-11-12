@@ -1,56 +1,21 @@
 import React from 'react';
 import {  BrowserRouter as Router, Route, Link, Redirect, withRouter} from "react-router-dom";
-import Map from './components/Map';
-import Login from './components/Login';
-import NavBar from './components/NavBar';
+import HomePage from './components/pages/HomePage';
+import LoginPage from './components//pages/LoginPage';
 
-import './App.css'; // Imported css
+import 'semantic-ui-css/semantic.min.css';
+import './App.css';                       // Imported css
 
 class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <div>
-          <NavBar/>
-          <h1>Home</h1>
-          <Route path="/public" component={Public} />
-          <Route path="/login" component={Log} />
-          <PrivateRoute path="/map" component={Map} />
-        </div>
-      </Router>
+      <div className="ui container">
+        <Route path="/" component={HomePage} exact/>
+        <Route path="/login" component={LoginPage}/>
+      </div>
     );
   }
-}
-
-function Public() {
-  return <h3>Public</h3>;
-}
-
-function Log(){
-  return (
-    <Login fakeAuth={this.fakeAuth}/>
-  );
-}
-
-function PrivateRoute({ component: Component, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        this.fakeAuth.isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
-    />
-  );
 }
 
 export default App;
