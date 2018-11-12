@@ -7,7 +7,6 @@
 .home{
     display: inline-block;
     height: 60px;
-    cursor: pointer;
 }
 
 .home img{
@@ -27,6 +26,8 @@ ul {
     overflow: hidden;
     position: fixed;
     top: 0;
+    right: 0;
+    left: 142px;
 }
 
 li {
@@ -41,8 +42,9 @@ li a {
     text-decoration: none;
 }
 
-#login{
+.login{
     float: right;
+    background-color: #8cc63f;
 }
 
 li a:hover:not(.active) {
