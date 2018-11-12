@@ -24,6 +24,10 @@ app.use((req,res,next) => {
 
 });
 
+app.post("/api/auth", (req,res) => {
+	res.status(400).json({ errors: {global: "Invalid credentials"}});
+});
+
 app.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
@@ -35,7 +39,7 @@ app.use('/restaurant', RestaurantRoutes);
 mongoose.connect('mongodb://dacuentas:dacuentas007@ds025419.mlab.com:25419/databasejs',{ useNewUrlParser: true },(err,res)=>{
 	if(err) return console.log("Couldn't connect to database");
 
-	const server = app.listen(3000, function () {
+	const server = app.listen(8080, function () {
     	console.log("Listening on port ", server.address().port);
 	})
 });
