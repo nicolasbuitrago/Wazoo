@@ -33,6 +33,8 @@ app.use('/api/auth', AuthRoutes);
 app.use('/users', UserRoutes);
 app.use('/restaurant', RestaurantRoutes);
 
+mongoose.set('useCreateIndex', true);
+
 //mongo ds025419.mlab.com:25419/databasejs -u dacuentas -p dacuentas007
 mongoose.connect('mongodb://dacuentas:dacuentas007@ds025419.mlab.com:25419/databasejs',{ useNewUrlParser: true },(err,res)=>{
 	if(err) return console.log("Couldn't connect to database");

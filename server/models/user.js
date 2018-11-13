@@ -1,7 +1,7 @@
 var mongoose = require("mongoose"),
     bcrypt = require('bcryptjs'),
     SALT_WORK_FACTOR = 10;
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 // const uniqueValidator =require('mongoose-unique-validator');
 
 var User = mongoose.Schema({
@@ -88,15 +88,15 @@ User.methods.isValidPassword = function isValidPassword(password) {
 //     .HOST}/reset_password/${this.generateResetPasswordToken()}`;
 // };
 
-// User.methods.generateJWT = function generateJWT() {
-//   return jwt.sign(
-//     {
-//       email: this.email,
-//       confirmed: this.confirmed
-//     },
-//     process.env.JWT_SECRET
-//   );
-// };
+User.methods.generateJWT = function generateJWT() {
+  return jwt.sign(
+    {
+      email: this.email,
+      confirmed: this.confirmed
+    },
+    "secretKey"
+  );
+};
 
 // User.methods.generateResetPasswordToken = function generateResetPasswordToken() {
 //   return jwt.sign(
@@ -108,13 +108,13 @@ User.methods.isValidPassword = function isValidPassword(password) {
 //   );
 // };
 
-// User.methods.toAuthJSON = function toAuthJSON() {
-//   return {
-//     email: this.email,
-//     confirmed: this.confirmed,
-//     token: this.generateJWT()
-//   };
-// };
+User.methods.toAuthJSON = function toAuthJSON() {
+  return {
+    email: this.email,
+    confirmed: this.confirmed,
+    token: this.generateJWT()
+  };
+};
 
 // User.plugin(uniqueValidator, { message: "This email is already taken" });
 

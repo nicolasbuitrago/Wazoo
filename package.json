@@ -6,6 +6,7 @@
     "axios": "^0.16.2",
     "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.3.0",
     "mapbox-gl": "^0.39.1",
     "mongoose": "^5.3.9",
     "prop-types": "^15.5.10",
