@@ -44,7 +44,7 @@ class List extends React.Component {
   render() {
     return (
     <div className='sidebar'>
-        <div className='heading'>
+        <div className='heading container'>
             <h1>Restaurantes</h1>
         </div>
         <div id='listings' className='listings'>{this.createList()}</div>

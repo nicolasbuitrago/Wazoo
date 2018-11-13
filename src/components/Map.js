@@ -1,6 +1,7 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl';
-import {BrowserRouter, Route} from 'react-router-dom';
+//import {BrowserRouter, Route} from 'react-router-dom';
+import { Grid } from 'semantic-ui-react';
 import List from './list';
 
 import rests from '../restaurants';
@@ -154,17 +155,22 @@ class Map extends React.Component {
     const { lng, lat, zoom } = this.state;
 
     return (
-      <div>
+      <Grid>
+        
         <div className="principal">
+        <Grid.Column width={4}>
           <List fly={this.flyTo}/>
+          </Grid.Column>
+          <Grid.Column width={11}>
           <div class='map pad2'>
             <div className="inline-block info mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
               <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
             </div>
             <div ref={el => this.mapContainer = el} className="map" />
           </div>
+          </Grid.Column>
         </div>
-      </div>
+      </Grid>
       
     );
   }
