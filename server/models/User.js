@@ -71,18 +71,6 @@ User.methods.isValidPassword = function isValidPassword(password) {
   return bcrypt.compareSync(password, this.passwordHash);
 };
 
-// User.methods.setPassword = function setPassword(password) {
-//   this.passwordHash = bcrypt.hashSync(password, 10);
-// };
-
-// User.methods.setConfirmationToken = function setConfirmationToken() {
-//   this.confirmationToken = this.generateJWT();
-// };
-
-// User.methods.generateConfirmationUrl = function generateConfirmationUrl() {
-//   return `${process.env.HOST}/confirmation/${this.confirmationToken}`;
-// };
-
 // User.methods.generateResetPasswordLink = function generateResetPasswordLink() {
 //   return `${process.env
 //     .HOST}/reset_password/${this.generateResetPasswordToken()}`;
