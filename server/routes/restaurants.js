@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const RestaurantModel = require('../models/restaurant')
+const RestaurantModel = require('../models/Restaurant')
 
 router.get('/',(req,res,next) =>{
 	res.status(200).json({

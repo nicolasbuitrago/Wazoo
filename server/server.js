@@ -4,9 +4,9 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 
-const UserRoutes = require('./routes/user');
-const RestaurantRoutes = require('./routes/restaurant');
-const AuthRoutes = require('./routes/auth');
+const userRoutes = require('./routes/users');
+const restaurantRoutes = require('./routes/restaurants');
+const authRoutes = require('./routes/auth');
 
 
 app.use(express.json());
@@ -29,9 +29,9 @@ app.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 
-app.use('/api/auth', AuthRoutes);
-app.use('/users', UserRoutes);
-app.use('/restaurant', RestaurantRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/restaurant', restaurantRoutes);
 
 mongoose.set('useCreateIndex', true);
 
