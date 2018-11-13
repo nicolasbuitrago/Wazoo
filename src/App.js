@@ -4,7 +4,7 @@ import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
 
 import 'semantic-ui-css/semantic.min.css';
-import './App.css';                       // Imported css
+//import './App.css';                       // Imported css
 
 class App extends React.Component {
 
