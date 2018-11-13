@@ -25,8 +25,27 @@ app.use((req,res,next) => {
 	next();
 });
 
+const faker = require('faker');
+const rests = require('../features');
+
 app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname, 'build', 'index.html'));
+	const r = [];
+
+rests.features.forEach(element => {
+    const p = {
+        name: faker.company.companyName(),
+        description: faker.company.catchPhrase(),
+        phone: faker.phone.phoneNumberFormat(),
+        address: faker.address.streetAddress(),
+        city:'Barranquilla',
+        state:'Atlantico',
+        country:'Colombia'
+    };
+    element.properties = p;
+    r.push(element);
+});
+	res.json(r);
+	//res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 
 app.use('/api/auth', authRoutes);
@@ -35,11 +54,13 @@ app.use('/restaurant', restaurantRoutes);
 
 mongoose.set('useCreateIndex', true);
 
+
+
 //mongo ds025419.mlab.com:25419/databasejs -u dacuentas -p dacuentas007
 mongoose.connect('mongodb://dacuentas:dacuentas007@ds025419.mlab.com:25419/databasejs',{ useNewUrlParser: true },(err,res)=>{
 	if(err) return console.log("Couldn't connect to database");
 
 	const server = app.listen(8080, function () {
-    	console.log("Listening on port ", server.address().port);
+		console.log("Listening on port ", server.address().port);
 	})
 });

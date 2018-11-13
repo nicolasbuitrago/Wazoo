@@ -124,7 +124,7 @@ class Map extends React.Component {
 
     var popup = new mapboxgl.Popup({ closeOnClick: false })
         .setLngLat(clickedPoint.geometry.coordinates)
-        .setHTML('<h5>'+clickedPoint.properties.name+'</h5>' +
+        .setHTML('<h4>'+clickedPoint.properties.name+'</h4>' +
           '<h6>' + clickedPoint.properties.address + '</h6>');
     popup.addTo(map);
     // 3. Highlight listing in sidebar (and remove highlight for all other items)
@@ -156,19 +156,18 @@ class Map extends React.Component {
 
     return (
       <Grid>
-        
         <div className="principal">
-        <Grid.Column width={4}>
-          <List fly={this.flyTo}/>
-          </Grid.Column>
-          <Grid.Column width={11}>
-          <div class='map pad2'>
-            <div className="inline-block info mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
-              <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
+          <Grid.Column width={4}>
+            <List fly={this.flyTo}/>
+            </Grid.Column>
+            <Grid.Column width={11}>
+            <div class='map pad2'>
+              <div className="inline-block info mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
+                <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
+              </div>
+              <div ref={el => this.mapContainer = el} className="map" />
             </div>
-            <div ref={el => this.mapContainer = el} className="map" />
-          </div>
-          </Grid.Column>
+            </Grid.Column>
         </div>
       </Grid>
       

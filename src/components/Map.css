@@ -157,7 +157,7 @@ a:hover {
   padding: 1%;
 }
 
-.mapboxgl-popup-content h5 {
+.mapboxgl-popup-content h4 {
   background: #91c949;
   color: #fff;
   margin: 0;
