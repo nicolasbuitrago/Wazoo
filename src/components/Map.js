@@ -2,7 +2,7 @@ import React from 'react';
 import mapboxgl from 'mapbox-gl';
 //import {BrowserRouter, Route} from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
-import List from './list';
+import List from './List';
 
 import rests from '../restaurants';
 
