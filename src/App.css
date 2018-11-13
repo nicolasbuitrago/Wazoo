@@ -156,6 +156,18 @@ a:hover {
   margin-top: -15px;
 }
 
+#box{
+  background: #91c949;
+  color: #fff;
+  margin: 0;
+  display: block;
+  padding: 5px;
+  border-radius: 2px 2px 2px 2px;
+  font-weight: 700;
+  width: 100%;
+
+}
+
 .mapboxgl-popup-content h4 {
   margin: 0;
   display: block;

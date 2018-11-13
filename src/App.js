@@ -2,6 +2,7 @@ import React from 'react'
 import mapboxgl from 'mapbox-gl'
 import List from './components/list'
 
+
 import rests from './restaurants' 
 
 import './App.css'; // Imported css
@@ -112,7 +113,8 @@ class App extends React.Component {
     var popup = new mapboxgl.Popup({ closeOnClick: false })
         .setLngLat(clickedPoint.geometry.coordinates)
         .setHTML('<h3>'+clickedPoint.properties.name+'</h3>' +
-          '<h4>' + clickedPoint.properties.address + '</h4>');
+          '<h4>' + clickedPoint.properties.address + '</h4>'+
+          '<button id="box"><center>Reservar</center></button>');
     popup.addTo(map);
     // 3. Highlight listing in sidebar (and remove highlight for all other items)
     var activeItem = document.getElementsByClassName('active');
