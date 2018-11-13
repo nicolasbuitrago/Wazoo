@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
-const mongoose = require('mongoose');
 const path = require('path');
+const mongoose = require('mongoose');
+
 
 const UserRoutes = require('./routes/user');
 const RestaurantRoutes = require('./routes/restaurant');
+const AuthRoutes = require('./routes/auth');
 
 
 app.use(express.json());
@@ -21,21 +23,17 @@ app.use((req,res,next) => {
 	}
 	console.log('dtest');
 	next();
-
-});
-
-app.post("/api/auth", (req,res) => {
-	res.status(400).json({ errors: {global: "Invalid credentials"}});
 });
 
 app.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 
-app.use('/user', UserRoutes);
+app.use('/api/auth', AuthRoutes);
+app.use('/users', UserRoutes);
 app.use('/restaurant', RestaurantRoutes);
 
-
+//mongo ds025419.mlab.com:25419/databasejs -u dacuentas -p dacuentas007
 mongoose.connect('mongodb://dacuentas:dacuentas007@ds025419.mlab.com:25419/databasejs',{ useNewUrlParser: true },(err,res)=>{
 	if(err) return console.log("Couldn't connect to database");
 
