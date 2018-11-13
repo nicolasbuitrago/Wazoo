@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
-const mongoose = require('mongoose');
 const path = require('path');
+const mongoose = require('mongoose');
 
-const UserRoutes = require('./routes/user');
-const RestaurantRoutes = require('./routes/restaurant');
+
+const userRoutes = require('./routes/users');
+const restaurantRoutes = require('./routes/restaurants');
+const authRoutes = require('./routes/auth');
 
 
 app.use(express.json());
@@ -21,21 +23,23 @@ app.use((req,res,next) => {
 	}
 	console.log('dtest');
 	next();
-
 });
 
 app.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 
-app.use('/user', UserRoutes);
-app.use('/restaurant', RestaurantRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/restaurant', restaurantRoutes);
 
+mongoose.set('useCreateIndex', true);
 
+//mongo ds025419.mlab.com:25419/databasejs -u dacuentas -p dacuentas007
 mongoose.connect('mongodb://dacuentas:dacuentas007@ds025419.mlab.com:25419/databasejs',{ useNewUrlParser: true },(err,res)=>{
 	if(err) return console.log("Couldn't connect to database");
 
-	const server = app.listen(3000, function () {
+	const server = app.listen(8080, function () {
     	console.log("Listening on port ", server.address().port);
 	})
 });
