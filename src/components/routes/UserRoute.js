@@ -8,6 +8,7 @@ const UserRoute = ({ isAuthenticated, component: Component, ...rest }) => (
 );
 
 UserRoute.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
     component: PropTypes.func.isRequired
 };
 

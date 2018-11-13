@@ -12,7 +12,7 @@ import 'semantic-ui-css/semantic.min.css';
 //import './App.css';                       // Imported css
 
 const App = ({ location }) => (
-  <div className="ui container">
+  <div className="ui ">
     <Route location={location} path="/" component={HomePage} exact/>
     <GuestRoute location={location} path="/login" component={LoginPage} exact/>
     <GuestRoute location={location} path="/signup" component={SignupPage} exact/>

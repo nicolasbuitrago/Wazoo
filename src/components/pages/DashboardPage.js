@@ -1,11 +1,14 @@
 import React from "react";
+import NavBar from '../NavBar';
+import Map from '../Map';
 
 class DashboardPage extends React.Component {
 
   render() {
     return (
-      <div className="ui container">
-        <h1>Dashboard</h1>
+      <div>
+        <NavBar/>
+        <Map/>
       </div>
     );
   }
