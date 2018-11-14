@@ -1,11 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 //import {BrowserRouter, Route} from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 import List from './List';
-import { fetchRestaurants } from "../actions/restaurants";
+// import { fetchRestaurants } from "../actions/restaurants";
+import axios from 'axios';
 
 //import rests from '../restaurants';
 
@@ -38,18 +39,33 @@ class Map extends React.Component {
   }
 
   componentWillMount = () => {
-    this.props.fetchRestaurants().then(response=> {
-      console.log(response.data);
-      this.setState({rests:{
-        features: response.data,
-        type: "FeatureCollection"
-      }});
-    });
+    axios.get('/api/restaurants').then(response => {
+      this.setState({
+        rests: {
+          features: response.data.restaurants,
+          type: "FeatureCollection"
+        }
+      });
+      this.componentDidMount();
+    }
+    );
+
+    // this.props.fetchRestaurants().then(response=> {
+    //   console.log(response.data);
+    //   this.setState({rests:{
+    //     features: response.data,
+    //     type: "FeatureCollection"
+    //   }});
+    // });
+  }
+
+  getRests=()=>{
+    return this.state.rests.features;
   }
 
   componentDidMount() {
     const { lng, lat, zoom, rests } = this.state;
-    console.log(rests);
+    // console.log(rests);
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/streets-v9',
@@ -164,13 +180,13 @@ class Map extends React.Component {
   }
 
   render() {
-    const { lng, lat, zoom } = this.state;
+    const { lng, lat, zoom, rests } = this.state;
 
     return (
       <Grid>
         <div className="principal">
           <Grid.Column width={4}>
-            <List fly={this.flyTo}/>
+            <List fly={this.flyTo} rests={rests.features} getRests={this.getRests}/>
             </Grid.Column>
             <Grid.Column width={11}>
             <div className='pad2'>
@@ -187,8 +203,9 @@ class Map extends React.Component {
   }
 }
 
-Map.propTypes = {
-  fetchRestaurants: PropTypes.func.isRequired
-}
+// Map.propTypes = {
+//   fetchRestaurants: PropTypes.func.isRequired
+// }
 
-export default connect(null, { fetchRestaurants })(Map);
+export default Map;
+// export default connect(null, { fetchRestaurants })(Map);

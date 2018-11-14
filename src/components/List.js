@@ -1,5 +1,4 @@
-import React from 'react'
-import rests from '../restaurants'
+import React from 'react';
 
 class Restaurant extends React.Component {
 
@@ -22,12 +21,13 @@ class List extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            restaurants: rests.features
+            restaurants: props.rests
         };
     }
 
     createList(){
-        var data = this.state.restaurants;
+        var data = this.props.getRests();
+        console.log(data)
         let list = [];
         // Iterate through the list of stores
         for (var i = 0; i < data.length; i++) {
