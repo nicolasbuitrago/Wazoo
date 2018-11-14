@@ -31,15 +31,17 @@ app.get('/', function(req, res) {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-app.use('/restaurant', restaurantRoutes);
+app.use('/api/restaurants', restaurantRoutes);
 
 mongoose.set('useCreateIndex', true);
+
+
 
 //mongo ds025419.mlab.com:25419/databasejs -u dacuentas -p dacuentas007
 mongoose.connect('mongodb://dacuentas:dacuentas007@ds025419.mlab.com:25419/databasejs',{ useNewUrlParser: true },(err,res)=>{
 	if(err) return console.log("Couldn't connect to database");
 
 	const server = app.listen(8080, function () {
-    	console.log("Listening on port ", server.address().port);
+		console.log("Listening on port ", server.address().port);
 	})
 });

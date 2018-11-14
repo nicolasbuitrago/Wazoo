@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Button } from "semantic-ui-react";
 import PropTypes from 'prop-types';
 import * as actions from '../../actions/auth';
+import SearchBar from '../SearchBar';
 
 const HomePage = ({ isAuthenticated, logout }) => (
   <div>
@@ -13,6 +14,7 @@ const HomePage = ({ isAuthenticated, logout }) => (
     ) : (
       <div><Link to='/login'>Login</Link> or <Link to='/signup'>Sign Up</Link></div>
     )}
+    <SearchBar/>
   </div>
 );
 

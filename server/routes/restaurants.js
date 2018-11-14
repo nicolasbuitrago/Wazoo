@@ -2,11 +2,10 @@ const express = require('express')
 const router = express.Router()
 const RestaurantModel = require('../models/Restaurant')
 
-router.get('/',(req,res,next) =>{
-	res.status(200).json({
-		message: 'Welcome to Restaurant CRUD'
-	})
-})
+router.get("/", (req, res) => {
+	RestaurantModel.find({ }).then(restaurants => res.json({ restaurants }));
+  });
+
 router.get('/getAllRestaurants',(req,res,next) =>{
 	RestaurantModel.find(function(err,existingRestaurants){
 		res.status(200).json({

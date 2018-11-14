@@ -1,10 +1,14 @@
 import React from 'react';
+// import { connect } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
+// import PropTypes from 'prop-types';
 //import {BrowserRouter, Route} from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
-import List from './list';
+import List from './List';
+// import { fetchRestaurants } from "../actions/restaurants";
+import axios from 'axios';
 
-import rests from '../restaurants';
+//import rests from '../restaurants';
 
 import './Map.css'; // Imported css
 
@@ -26,20 +30,42 @@ class Map extends React.Component {
     this.state = {
       lng: -74.8090,
       lat: 10.9950,
-      zoom: 13.64
+      zoom: 13.64,
+      rests: {
+        features: [],
+        type: "FeatureCollection"
+      }
     };
   }
 
-  // map = new mapboxgl.Map({
-  //   container: this.mapContainer,
-  //   style: 'mapbox://styles/mapbox/streets-v9',
-  //   center: [this.state.lng, this.state.lat],
-  //   zoom: this.state.zoom
-  // })
+  componentWillMount = () => {
+    axios.get('/api/restaurants').then(response => {
+      this.setState({
+        rests: {
+          features: response.data.restaurants,
+          type: "FeatureCollection"
+        }
+      });
+      this.componentDidMount();
+    }
+    );
+
+    // this.props.fetchRestaurants().then(response=> {
+    //   console.log(response.data);
+    //   this.setState({rests:{
+    //     features: response.data,
+    //     type: "FeatureCollection"
+    //   }});
+    // });
+  }
+
+  getRests=()=>{
+    return this.state.rests.features;
+  }
 
   componentDidMount() {
-    const { lng, lat, zoom } = this.state;
-
+    const { lng, lat, zoom, rests } = this.state;
+    // console.log(rests);
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/streets-v9',
@@ -111,6 +137,7 @@ class Map extends React.Component {
 
   flyAndPopUp=(clickedPoint)=>{
     const map = this.map;
+    const {rests} = this.state;
     // 1. Fly to the point
     map.flyTo({
       center: clickedPoint.geometry.coordinates,
@@ -124,7 +151,7 @@ class Map extends React.Component {
 
     var popup = new mapboxgl.Popup({ closeOnClick: false })
         .setLngLat(clickedPoint.geometry.coordinates)
-        .setHTML('<h5>'+clickedPoint.properties.name+'</h5>' +
+        .setHTML('<h4>'+clickedPoint.properties.name+'</h4>' +
           '<h6>' + clickedPoint.properties.address + '</h6>');
     popup.addTo(map);
     // 3. Highlight listing in sidebar (and remove highlight for all other items)
@@ -146,29 +173,29 @@ class Map extends React.Component {
   }
 
   flyTo=(id)=>{
+    const {rests} = this.state;
     var clickedPoint = rests.features[id];
     
     this.flyAndPopUp(clickedPoint);
   }
 
   render() {
-    const { lng, lat, zoom } = this.state;
+    const { lng, lat, zoom, rests } = this.state;
 
     return (
       <Grid>
-        
         <div className="principal">
-        <Grid.Column width={4}>
-          <List fly={this.flyTo}/>
-          </Grid.Column>
-          <Grid.Column width={11}>
-          <div class='map pad2'>
-            <div className="inline-block info mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
-              <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
+          <Grid.Column width={4}>
+            <List fly={this.flyTo} rests={rests.features} getRests={this.getRests}/>
+            </Grid.Column>
+            <Grid.Column width={11}>
+            <div className='pad2'>
+              <div className="inline-block info mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
+                <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
+              </div>
+              <div ref={el => this.mapContainer = el} className="map" />
             </div>
-            <div ref={el => this.mapContainer = el} className="map" />
-          </div>
-          </Grid.Column>
+            </Grid.Column>
         </div>
       </Grid>
       
@@ -176,4 +203,9 @@ class Map extends React.Component {
   }
 }
 
+// Map.propTypes = {
+//   fetchRestaurants: PropTypes.func.isRequired
+// }
+
 export default Map;
+// export default connect(null, { fetchRestaurants })(Map);

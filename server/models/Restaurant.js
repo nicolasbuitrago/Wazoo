@@ -3,19 +3,24 @@ const mongoose = require('mongoose')
 const RestaurantSchema = mongoose.Schema({   
  	type: String,
  	properties:{
- 		name: String,	
- 		phoneFormatted: String,
-		phone: Number, 
+		name: String,
+		description: String, 
+ 		phone: String,
 		address: String,
 		city: String,
-		country: String,
-		crossStreet: String,
 		state: String,
+		country: String
 	},
  	geometry:{
- 		pos_y:Number,
- 		pos_x:Number,
- 		type_icon: String,	
+		type: {
+			type: String, // Don't do `{ location: { type: String } }`
+			enum: ['Point'], // 'location.type' must be 'Point'
+			required: true
+		  },
+		  coordinates: {
+			type: [Number],
+			required: true
+	  }	
  	},
 })
 
