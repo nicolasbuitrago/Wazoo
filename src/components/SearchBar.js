@@ -1,17 +1,10 @@
 import _ from 'lodash'
-import faker from 'faker'
 import React, { Component } from 'react'
 import { Search, Grid, Header, Segment } from 'semantic-ui-react'
 
-const source = _.times(5, () => ({
-  name: faker.company.companyName(),
-  description: faker.company.catchPhrase(),
-  phone: faker.phone.phoneNumberFormat(),
-  address: faker.address.streetAddress(),
-  city:'Barranquilla',
-  state:'Atlantico',
-  country:'Colombia'
-}));
+const source = {
+
+};
 
 export default class SearchBar extends Component {
   componentWillMount() {

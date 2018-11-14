@@ -25,32 +25,13 @@ app.use((req,res,next) => {
 	next();
 });
 
-const faker = require('faker');
-const rests = require('../features');
-
 app.get('/', function(req, res) {
-	const r = [];
-
-rests.features.forEach(element => {
-    const p = {
-        name: faker.company.companyName(),
-        description: faker.company.catchPhrase(),
-        phone: faker.phone.phoneNumberFormat(),
-        address: faker.address.streetAddress(),
-        city:'Barranquilla',
-        state:'Atlantico',
-        country:'Colombia'
-    };
-    element.properties = p;
-    r.push(element);
-});
-	res.json(r);
-	//res.sendFile(path.join(__dirname, 'build', 'index.html'));
+	res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-app.use('/restaurant', restaurantRoutes);
+app.use('/api/restaurants', restaurantRoutes);
 
 mongoose.set('useCreateIndex', true);
 
