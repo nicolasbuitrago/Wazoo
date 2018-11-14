@@ -10,6 +10,7 @@ import rootReducer from './rootReducer';
 import * as serviceWorker from './serviceWorker';
 import { userLoggedIn } from './actions/auth';
 
+import 'semantic-ui-css/semantic.min.css';
 //import './index.css';
 
 const store = createStore(

@@ -1,12 +1,18 @@
 import React from 'react'
-import { Menu, Button } from 'semantic-ui-react'
+import { Menu, Button, Image } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../actions/auth';
 
+import './NavBar.css';
+
 const NavBar = ({ isAuthenticated, logout }) => (
   <Menu secondary pointing>
+    <Menu.Item className='logo'>
+      <Image size='mini' src='./imgs/wazoo.png' />
+    </Menu.Item>
+    <Menu.Item header>Wazoo</Menu.Item>
     <Menu.Item name='home' as={Link} to='/' />
     <Menu.Item
       name='restaurantes'
@@ -14,7 +20,11 @@ const NavBar = ({ isAuthenticated, logout }) => (
     <Menu.Item
       name='cuenta'
     />
-    <Menu.Menu position='right' size='mini'>
+    <Menu.Item className="right logout">
+      {/* <Button basic color='red' size='tiny'>Log out</Button> */}
+      Log out
+    </Menu.Item>
+    {/* <Menu.Menu position='right' size='mini'>
       {isAuthenticated?(
         <Menu.Item>
           <Button basic color='red'>Log out</Button>
@@ -24,7 +34,7 @@ const NavBar = ({ isAuthenticated, logout }) => (
           <Button basic color='green'>Log in</Button>
         </Menu.Item>
       )}
-    </Menu.Menu>
+    </Menu.Menu> */}
   </Menu>
 );
 
