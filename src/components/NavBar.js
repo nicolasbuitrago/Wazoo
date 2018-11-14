@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Button, Image } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -20,7 +20,7 @@ const NavBar = ({ isAuthenticated, logout }) => (
     <Menu.Item
       name='cuenta'
     />
-    <Menu.Item className="right logout">
+    <Menu.Item className="right logout" onClick={() => logout()}>
       {/* <Button basic color='red' size='tiny'>Log out</Button> */}
       Log out
     </Menu.Item>

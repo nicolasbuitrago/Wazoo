@@ -1,4 +1,5 @@
 import React from 'react';
+import { Search } from 'semantic-ui-react';
 
 class Restaurant extends React.Component {
 
@@ -10,7 +11,7 @@ class Restaurant extends React.Component {
     render() {
         return (
         <div id={'item-'+this.props.id} className='item'>
-            <a href='#' className='title' onClick={this.onClick}>{this.props.name}</a>
+            <p  className='title' onClick={this.onClick}>{this.props.name}</p>
         </div>
         );
     }
@@ -21,8 +22,17 @@ class List extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            restaurants: props.rests
+            restaurants: [],
+            favorities: []
         };
+    }
+
+    componentWillMount = () => {
+        const data = this.props.getRests();
+        this.setState({
+            restaurants:data.rests,
+            favorities: data.favs
+        });
     }
 
     createList(){
@@ -47,6 +57,7 @@ class List extends React.Component {
         <div className='heading container'>
             <h1>Restaurantes</h1>
         </div>
+        <Search/>
         <div id='listings' className='listings'>{this.createList()}</div>
     </div>
     );

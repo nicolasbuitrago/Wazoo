@@ -13,14 +13,14 @@
 }
 
 .ui.secondary.pointing.menu .item.right.logout {
-    background: #ff2727d2;
+    background: #e20101d2;
     border-radius: 15px;
     color:#fff;
     cursor:pointer;
 }
 
 .ui.secondary.pointing.menu .item.right.logout:hover {
-    background: #d80c0ce0;
+    background: #aa1b1be0;
 }
 
 .right .item{

@@ -70,13 +70,13 @@ a:hover {
 }
 
 .heading h1 {
-  padding-top: 1rem;
+  padding-top: 0.8rem;
 }
 
 .listings {
   height: 100%;
   overflow: auto;
-  padding-bottom: 60px;
+  /* padding-bottom: 60px; */
 }
 
 .listings .item {
@@ -84,6 +84,7 @@ a:hover {
   border-bottom: 1px solid #eee;
   padding: 10px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .listings .item:last-child { border-bottom: none; }
