@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+// import { createSelector } from "reselect";
 import { RESTAURANT_FETCHED, RESTAURANT_CREATED } from "../types";
 
 export default function Restaurants(state = {}, action = {}) {
