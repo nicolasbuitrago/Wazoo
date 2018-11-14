@@ -36,7 +36,9 @@ router.post('/',(req,res) =>{
 	});
 });
 
-router.get('/favorites',(req,res) =>{
+router.post('/favorites',(req,res) =>{
+	console.log('BODY');
+	console.log(req.body);
 	var data = req.body.user;
 	console.log(data);
 	UserModel.findOne({ email: data.email }).populate('favorites')

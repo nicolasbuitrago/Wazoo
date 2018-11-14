@@ -9,6 +9,7 @@ import App from './App';
 import rootReducer from './rootReducer';
 import * as serviceWorker from './serviceWorker';
 import { userLoggedIn } from './actions/auth';
+import decode from "jwt-decode";
 
 import 'semantic-ui-css/semantic.min.css';
 //import './index.css';
@@ -19,7 +20,11 @@ const store = createStore(
 );
 
 if(localStorage.wazooJWT){
-  const user ={ token: localStorage.wazooJWT };
+  const payload = decode(localStorage.wazooJWT);
+  const user = {
+    token: localStorage.wazooJWT,
+    email: payload.email
+};
   store.dispatch(userLoggedIn(user));
 }
 

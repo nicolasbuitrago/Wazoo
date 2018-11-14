@@ -1,6 +1,6 @@
 import React from "react";
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import NavBar from '../NavBar';
 import Map from '../Map';
 // import { fetchRestaurants } from "../../actions/restaurants";
@@ -15,7 +15,7 @@ class DashboardPage extends React.Component {
     // this.componentWillMount();
   }
 
-  // componentDidMount = () => this.onInit(this.props);
+  // componentDidMount = () => this.click();
 
   // onInit = (props) => props.fetchRestaurants();
 
@@ -26,34 +26,29 @@ class DashboardPage extends React.Component {
   // }
 
   click = () => {
-    console.log(this.props)
+    console.log(this.props.email)
   }
 
   render() {
-    const {restaurants} = this.state;
     return (
       <div>
         <NavBar/>
-        <Map restaurants={restaurants} />
+        <Map email={this.props.email} />
       </div>
     );
   }
 }
 
-// DashboardPage.propTypes = {
-//   fetchRestaurants: PropTypes.func.isRequired,
-//   restaurants: PropTypes.arrayOf(
-//     PropTypes.object.isRequired
-//   ).isRequired
-// }
+DashboardPage.propTypes = {
+  email: PropTypes.string.isRequired
+}
 
-// function mapStateToProps(state) {
-//   return {
-//     isConfirmed: !!state.user.confirmed,
-//     restaurants: state.restaurants
-//  };
-// }
+function mapStateToProps(state) {
+  return {
+    email: state.user.email
+ };
+}
 
-export default DashboardPage;
+// export default DashboardPage;
 
-// export default connect(mapStateToProps, { fetchRestaurants })(DashboardPage);
+export default connect(mapStateToProps, {  })(DashboardPage);

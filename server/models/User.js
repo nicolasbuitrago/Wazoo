@@ -73,8 +73,7 @@ User.methods.isValidPassword = function isValidPassword(password) {
 User.methods.generateJWT = function generateJWT() {
   return jwt.sign(
     {
-      email: this.email,
-      confirmed: this.confirmed
+      email: this.email
     },
     "secretKey"
   );
@@ -93,7 +92,6 @@ User.methods.generateJWT = function generateJWT() {
 User.methods.toAuthJSON = function toAuthJSON() {
   return {
     email: this.email,
-    confirmed: this.confirmed,
     token: this.generateJWT()
   };
 };

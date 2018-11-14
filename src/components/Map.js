@@ -34,7 +34,9 @@ class Map extends React.Component {
       rests: {
         features: [],
         type: "FeatureCollection"
-      }
+      },
+      all:[],
+      favs:[]
     };
   }
 
@@ -47,6 +49,15 @@ class Map extends React.Component {
         }
       });
       this.componentDidMount();
+      const user = {email: this.props.email};
+      const email = this.props.email;
+      console.log(user);
+      axios.post('/api/users/favorites',{ user:{ email:email } }).then(resp => {
+        this.setState({
+          favs: resp.data.favorities
+        });
+      }
+      );
     }
     );
 
