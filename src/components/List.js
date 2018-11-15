@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Search, Button } from 'semantic-ui-react';
+import { Grid, Search, Button, Icon } from 'semantic-ui-react';
 
 class Restaurant extends React.Component {
 
@@ -11,7 +11,12 @@ class Restaurant extends React.Component {
     render() {
         return (
         <div id={'item-'+this.props.id} className='item'>
-            <p  className='title' onClick={this.onClick}>{this.props.name}</p>
+            <h4  className='title' onClick={this.onClick}>{this.props.name}</h4>
+            {this.props.id === 1?
+            <Icon name='heart' className='fav' color='red' />
+            :
+            <Icon name='heart' className='fav' color='grey' />
+            }
         </div>
         );
     }

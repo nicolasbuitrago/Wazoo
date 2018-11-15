@@ -94,9 +94,13 @@ a:hover {
 .listings .item:last-child { border-bottom: none; }
 
 .listings .item .title {
-  display: block;
+  display: inline-block;
   color: #00853e;
   font-weight: 700;
+}
+
+.listings .item .fav{
+  padding-left: .78571429em;
 }
 
 .listings .item .title small { font-weight: 400; }
