@@ -48,4 +48,50 @@ router.post('/favorites',(req,res) =>{
 	});
 });
 
+router.post('/addFavorite',(req,res) =>{
+	var idRestaurant = req.body.idRestaurant;
+	var userEmail = req.body.email;
+	UserModel.findOne({ email: userEmail },function(err,user){
+		var list = user.favorites;
+		list.push(idRestaurant);
+		UserModel.findOneAndUpdate({email: userEmail}, {$set:{favorites:list}}, {new: true}, (err, doc) => {
+   		if (err) {
+        	console.log("Something wrong when updating data!");
+    	}
+    		console.log(doc);
+    		res.json({ restaurants: doc});
+		});
+		
+	}) 
+	
+});
+
+router.post('/removeFavorite',(req,res) =>{
+	var idRestaurant = req.body.idRestaurant;
+	var userEmail = req.body.email;
+	UserModel.findOne({ email: userEmail },function(err,user){
+		var list = user.favorites;
+		var i;
+		for (i = 0; i < list.length; i++) { 
+    		if(list[i]==idRestaurant){
+				list.splice(i, 1);
+    		}
+		}
+		
+		UserModel.findOneAndUpdate({email: userEmail}, {$set:{favorites:list}}, {new: true}, (err, doc) => {
+   		if (err) {
+        	console.log("Something wrong when updating data!");
+    	}
+    		console.log(doc);
+    		res.json({ restaurants: doc});
+		});
+		
+	}) 
+	
+});
+
+
+
+
+
 module.exports = router
