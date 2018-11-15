@@ -247,6 +247,25 @@ class Map extends React.Component {
     this.flyAndPopUp(clickedPoint);
   }
 
+  isFav = (rest) => {
+    var favs =this.state.favs;console.log('---- CLICK -----')
+    var fav = false;
+    this.state.favs.forEach(function(r){
+      console.log(rest.properties.name+' = '+r.properties.name);
+        console.log(rest._id == r._id);
+      if(rest._id === r._id){
+        fav = true;
+      }
+      // if(favs.includes(rest)){
+      //   console.log(rest.properties.name+' = '+r.properties.name);
+      //   console.log(rest._id == r._id);
+      // }
+    })
+    return fav;
+    
+    // return this.state.favs.includes(rest);
+  }
+
   render() {
     const { lng, lat, zoom } = this.state;
 
@@ -254,7 +273,7 @@ class Map extends React.Component {
       <Grid>
         <div className="principal">
           <Grid.Column width={4}>
-            <List fly={this.flyTo} setRests={this.setRests} getRests={this.getRests}/>
+            <List fly={this.flyTo} setRests={this.setRests} getRests={this.getRests} isFav={this.isFav} />
             </Grid.Column>
             <Grid.Column width={11}>
             <div className='pad2'>

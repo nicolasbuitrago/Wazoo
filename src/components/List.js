@@ -12,7 +12,7 @@ class Restaurant extends React.Component {
         return (
         <div id={'item-'+this.props.id} className='item'>
             <h4  className='title' onClick={this.onClick}>{this.props.name}</h4>
-            {this.props.id === 1?
+            {this.props.isFav?
             <Icon name='heart' className='fav' color='red' />
             :
             <Icon name='heart' className='fav' color='grey' />
@@ -42,7 +42,7 @@ class List extends React.Component {
 
     createList(){
         var data = this.props.getRests();
-        console.log(data)
+        // console.log(data)
         let list = [];
         // Iterate through the list of stores
         for (var i = 0; i < data.length; i++) {
@@ -51,7 +51,7 @@ class List extends React.Component {
             // writing this long form over and over again.
             var prop = currentFeature.properties;
 
-            list.push(<Restaurant id={i} name={prop.name} fly={this.props.fly}></Restaurant>);
+            list.push(<Restaurant id={i} name={prop.name} fly={this.props.fly} isFav={this.props.isFav(data[i])} />);
         }
         return list;
     }
