@@ -10,12 +10,10 @@ class Restaurant extends React.Component {
 
     addFav = () => {
         this.props.addFav(this.props._id);
-        // this.props.createList();
     }
 
     removeFav = () => {
         this.props.removeFav(this.props._id);
-        // this.props.createList();
     }
 
     render() {
@@ -40,22 +38,6 @@ class List extends React.Component {
             restaurants: [],
             favorities: []
         };
-    }
-
-    componentWillMount = () => {
-        const data = this.props.getRests();
-        // console.log('data');
-        // console.log(data);
-        this.setState({
-            restaurants: data.rests,
-            favorities: data.favs
-        });
-    }
-
-    componentDidMount = () => {
-        const data = this.props.getRests();
-        // console.log('data');
-        // console.log(data);
     }
 
     createList(){
@@ -98,7 +80,7 @@ class List extends React.Component {
     return (
     <div className='sidebar'>
         <div className='heading'>
-            <h1>Restaurantes</h1>
+            <h1>Restaurants</h1>
         </div>
         <Grid columns={2}>
         <Grid.Column width={1}/>

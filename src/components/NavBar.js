@@ -15,7 +15,7 @@ const NavBar = ({ isAuthenticated, logout }) => (
     <Menu.Item header>Wazoo</Menu.Item>
     <Menu.Item name='home' as={Link} to='/' />
     <Menu.Item
-      name='restaurantes'
+      name='restaurants'
     />
     <Menu.Item
       name='cuenta'
