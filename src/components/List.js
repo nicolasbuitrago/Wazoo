@@ -79,8 +79,8 @@ class List extends React.Component {
             </Grid.Column>
             <Grid.Column width={6}>
                 {/* <div className=''> */}
-                <Button className='bLeft' size='tiny' attached='right' onClick={this.setFavs}>Favs</Button>
-                <Button className='bLeft' size='tiny' attached='left' onClick={this.setAll} active >All</Button>
+                <Button className='bLeft' size='tiny' attached='right' onClick={this.setFavs} >Favs</Button>
+                <Button className='bLeft' size='tiny' attached='left' onClick={this.setAll} >All</Button>
                 
                 {/* </div> */}
             </Grid.Column>
