@@ -1,4 +1,5 @@
-var mongoose = require("mongoose"),
+const mongoose = require("mongoose"),
+    Schema = mongoose.Schema,
     bcrypt = require('bcryptjs'),
     SALT_WORK_FACTOR = 10;
 const jwt = require('jsonwebtoken');
@@ -27,14 +28,7 @@ var User = mongoose.Schema({
       required: true
     },
   address: String,
-  confirmed: { 
-      type: Boolean, 
-      default: false 
-    },
-  confirmationToken: { 
-      type: String, 
-      default: "" 
-    }
+  favorites:[{ type: Schema.Types.ObjectId, ref: 'Restaurant' }]
   },
   { timestamps: true }
 );
@@ -79,8 +73,7 @@ User.methods.isValidPassword = function isValidPassword(password) {
 User.methods.generateJWT = function generateJWT() {
   return jwt.sign(
     {
-      email: this.email,
-      confirmed: this.confirmed
+      email: this.email
     },
     "secretKey"
   );
@@ -99,7 +92,6 @@ User.methods.generateJWT = function generateJWT() {
 User.methods.toAuthJSON = function toAuthJSON() {
   return {
     email: this.email,
-    confirmed: this.confirmed,
     token: this.generateJWT()
   };
 };

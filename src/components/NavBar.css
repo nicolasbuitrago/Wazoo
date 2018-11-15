@@ -1,57 +1,28 @@
-.navBar{
-    width: 100%;
-    left: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+.logo{
+    /* padding: 0px 0px 0px 15px !important; */
+    padding: 0px !important;
+}
+.menu{
+    padding: 10px 15px;
 }
 
-.home{
-    display: inline-block;
-    height: 60px;
+.ui.secondary.pointing.menu .item.header {
+    padding: .5em 1.14285714em .5em 0.6em;
+    font-size:1.3em;
+    
 }
 
-.home img{
-    display: inline-block;
-    padding: 10px 0 0 10px;
+.ui.secondary.pointing.menu .item.right.logout {
+    background: #e20101d2;
+    border-radius: 15px;
+    color:#fff;
+    cursor:pointer;
 }
 
-.home h1{
-    display: inline-block;
-    padding: 20px 10px;
+.ui.secondary.pointing.menu .item.right.logout:hover {
+    background: #aa1b1be0;
 }
 
-ul {
-    display: inline-block;
-    list-style-type: none;
-    height: 60px;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 142px;
-}
-
-li {
-    float: left;
-    height: 60px;
-}
-
-li a {
-    display: block;
-    text-align: center;
-    padding: 19px 16px;
-    text-decoration: none;
-}
-
-.login{
-    float: right;
-    background-color: #8cc63f;
-}
-
-li a:hover:not(.active) {
-    background-color: #8cc63f;
-    color:white;
-}
-
-.active {
-    background-color: #4CAF50;
+.right .item{
+    margin-top: 2px !important;
 }

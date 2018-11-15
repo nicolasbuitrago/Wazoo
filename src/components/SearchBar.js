@@ -2,11 +2,42 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Search, Grid, Header, Segment } from 'semantic-ui-react'
 
-const source = {
+import './SearchBar.css';
 
-};
+const source = [
+  {
+    "title": "Pacocha - Connelly",
+    "description": "Distributed motivating alliance",
+    "image": "https://s3.amazonaws.com/uifaces/faces/twitter/jeremery/128.jpg",
+    "price": "$47.87"
+  },
+  {
+    "title": "Hilpert - Lakin",
+    "description": "Open-source homogeneous concept",
+    "image": "https://s3.amazonaws.com/uifaces/faces/twitter/kiwiupover/128.jpg",
+    "price": "$52.48"
+  },
+  {
+    "title": "O'Hara Group",
+    "description": "Virtual 3rd generation adapter",
+    "image": "https://s3.amazonaws.com/uifaces/faces/twitter/ryanmclaughlin/128.jpg",
+    "price": "$87.82"
+  },
+  {
+    "title": "Schaefer, Torp and Mosciski",
+    "description": "Expanded reciprocal emulation",
+    "image": "https://s3.amazonaws.com/uifaces/faces/twitter/alan_zhang_/128.jpg",
+    "price": "$98.56"
+  },
+  {
+    "title": "Kshlerin, Predovic and White",
+    "description": "Fully-configurable radical firmware",
+    "image": "https://s3.amazonaws.com/uifaces/faces/twitter/teylorfeliz/128.jpg",
+    "price": "$31.33"
+  }
+];
 
-export default class SearchBar extends Component {
+export default class SearchExampleStandard extends Component {
   componentWillMount() {
     this.resetComponent()
   }
@@ -35,7 +66,7 @@ export default class SearchBar extends Component {
     const { isLoading, value, results } = this.state
 
     return (
-      <Grid className='container ui'>
+      <Grid>
         <Grid.Column width={6}>
           <Search
             loading={isLoading}

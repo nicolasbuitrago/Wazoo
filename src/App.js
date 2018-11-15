@@ -7,13 +7,15 @@ import DashboardPage from "./components/pages/DashboardPage";
 import UserRoute from './components/routes/UserRoute';
 import GuestRoute from './components/routes/GuestRoute';
 import PropTypes from 'prop-types';
+import SearchBar from './components/SearchBar';
 
-import 'semantic-ui-css/semantic.min.css';
+
 //import './App.css';                       // Imported css
 
 const App = ({ location }) => (
-  <div className="ui ">
+  <div className=" ">
     <Route location={location} path="/" component={HomePage} exact/>
+    <Route location={location} path="/s" component={SearchBar} exact/>
     <GuestRoute location={location} path="/login" component={LoginPage} exact/>
     <GuestRoute location={location} path="/signup" component={SignupPage} exact/>
     <UserRoute location={location} path="/dashboard" component={DashboardPage} exact/>

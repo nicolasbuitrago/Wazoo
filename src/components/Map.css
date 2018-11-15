@@ -50,7 +50,7 @@ a:hover {
   position: absolute;
   left: 30%;
   width: 70%;
-  top: 48px;
+  top: 60px;
   bottom: 0;
 }
 
@@ -70,13 +70,17 @@ a:hover {
 }
 
 .heading h1 {
-  padding-top: 1rem;
+  padding-top: 0.8rem;
+}
+
+.sidebar .ui.grid{
+  margin-top: -0.5rem;
 }
 
 .listings {
   height: 100%;
   overflow: auto;
-  padding-bottom: 60px;
+  /* padding-bottom: 60px; */
 }
 
 .listings .item {
@@ -84,14 +88,19 @@ a:hover {
   border-bottom: 1px solid #eee;
   padding: 10px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .listings .item:last-child { border-bottom: none; }
 
 .listings .item .title {
-  display: block;
+  display: inline-block;
   color: #00853e;
   font-weight: 700;
+}
+
+.listings .item .fav{
+  padding-left: .78571429em;
 }
 
 .listings .item .title small { font-weight: 400; }
