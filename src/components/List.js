@@ -8,14 +8,24 @@ class Restaurant extends React.Component {
         this.props.fly(this.props.id);
     }
 
+    addFav = () => {
+        this.props.addFav(this.props._id);
+        // this.props.createList();
+    }
+
+    removeFav = () => {
+        this.props.removeFav(this.props._id);
+        // this.props.createList();
+    }
+
     render() {
         return (
         <div id={'item-'+this.props.id} className='item'>
             <h4  className='title' onClick={this.onClick}>{this.props.name}</h4>
-            {this.props.isFav?
-            <Icon name='heart' className='fav' color='red' />
+            {this.props.isFav(this.props._id)?
+            <Icon name='heart' className='fav' color='red' onClick={this.removeFav} />
             :
-            <Icon name='heart' className='fav' color='grey' />
+            <Icon name='heart' className='fav' color='grey' onClick={this.addFav} />
             }
         </div>
         );
@@ -34,10 +44,18 @@ class List extends React.Component {
 
     componentWillMount = () => {
         const data = this.props.getRests();
+        // console.log('data');
+        // console.log(data);
         this.setState({
-            restaurants:data.rests,
+            restaurants: data.rests,
             favorities: data.favs
         });
+    }
+
+    componentDidMount = () => {
+        const data = this.props.getRests();
+        // console.log('data');
+        // console.log(data);
     }
 
     createList(){
@@ -51,7 +69,17 @@ class List extends React.Component {
             // writing this long form over and over again.
             var prop = currentFeature.properties;
 
-            list.push(<Restaurant id={i} name={prop.name} fly={this.props.fly} isFav={this.props.isFav(data[i])} />);
+            list.push(
+                <Restaurant 
+                id={i} 
+                name={prop.name} 
+                fly={this.props.fly} 
+                isFav={this.props.isFav}
+                addFav={this.props.addFav}
+                removeFav={this.props.removeFav}
+                _id={currentFeature._id}
+                />
+            );
         }
         return list;
     }
@@ -78,11 +106,8 @@ class List extends React.Component {
             <Search/>
             </Grid.Column>
             <Grid.Column width={6}>
-                {/* <div className=''> */}
                 <Button className='bLeft' size='tiny' attached='right' onClick={this.setFavs} >Favs</Button>
                 <Button className='bLeft' size='tiny' attached='left' onClick={this.setAll} >All</Button>
-                
-                {/* </div> */}
             </Grid.Column>
         </Grid>
         <div id='listings' className='listings'>{this.createList()}</div>

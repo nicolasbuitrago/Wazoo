@@ -55,7 +55,7 @@ class Map extends React.Component {
       const email = this.props.email;
       axios.post('/api/users/favorites',{ user:{ email:email } }).then(resp => {
         this.setState({
-          favs: resp.data.favorities
+          favs: resp.data.favorites
         });
       }
       );
@@ -247,14 +247,34 @@ class Map extends React.Component {
     this.flyAndPopUp(clickedPoint);
   }
 
-  isFav = (rest) => {
+  isFav = (id) => {
     var fav = false;
     this.state.favs.forEach(function(r){
-      if(rest._id === r._id){
+      if(id === r._id){
         fav = true;
       }
     })
     return fav;
+  }
+
+  addFav = (id) => {
+    const email = this.props.email;
+    axios.post('/api/users/favorites/add',{  email:email, id:id }).then(resp => {
+      this.setState({
+        favs: resp.data.favorites
+      });
+    }
+    );
+  }
+
+  removeFav = (id) => {
+    const email = this.props.email;
+    axios.post('/api/users/favorites/remove',{  email:email, id:id }).then(resp => {
+      this.setState({
+        favs: resp.data.favorites
+      });
+    }
+    );
   }
 
   render() {
@@ -264,7 +284,14 @@ class Map extends React.Component {
       <Grid>
         <div className="principal">
           <Grid.Column width={4}>
-            <List fly={this.flyTo} setRests={this.setRests} getRests={this.getRests} isFav={this.isFav} />
+            <List 
+              fly={this.flyTo} 
+              setRests={this.setRests} 
+              getRests={this.getRests} 
+              isFav={this.isFav} 
+              addFav={this.addFav} 
+              removeFav={this.removeFav} 
+              />
             </Grid.Column>
             <Grid.Column width={11}>
             <div className='pad2'>
