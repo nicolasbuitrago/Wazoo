@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search } from 'semantic-ui-react';
+import { Grid, Search, Button } from 'semantic-ui-react';
 
 class Restaurant extends React.Component {
 
@@ -51,13 +51,32 @@ class List extends React.Component {
         return list;
     }
 
+    setAll=()=> {
+        this.props.setRests('all');
+        this.createList();
+    }
+
+    setFavs=()=> {
+        this.props.setRests('favs');
+        this.createList();
+    }
+
   render() {
     return (
     <div className='sidebar'>
-        <div className='heading container'>
+        <div className='heading'>
             <h1>Restaurantes</h1>
         </div>
-        <Search/>
+        <Grid columns={2}>
+        <Grid.Column width={1}/>
+            <Grid.Column width={9}>
+            <Search/>
+            </Grid.Column>
+            <Grid.Column width={6}>
+                <Button size='tiny' attached='left' onClick={this.setAll}>All</Button>
+                <Button size='tiny' attached='right' onClick={this.setFavs}>Favs</Button>
+            </Grid.Column>
+        </Grid>
         <div id='listings' className='listings'>{this.createList()}</div>
     </div>
     );

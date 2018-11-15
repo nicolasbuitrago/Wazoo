@@ -73,6 +73,10 @@ a:hover {
   padding-top: 0.8rem;
 }
 
+.sidebar .ui.grid{
+  margin-top: -0.5rem;
+}
+
 .listings {
   height: 100%;
   overflow: auto;

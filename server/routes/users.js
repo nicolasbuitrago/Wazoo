@@ -37,10 +37,10 @@ router.post('/',(req,res) =>{
 });
 
 router.post('/favorites',(req,res) =>{
-	console.log('BODY');
-	console.log(req.body);
+	// console.log('BODY');
+	// console.log(req.body);
 	var data = req.body.user;
-	console.log(data);
+	// console.log(data);
 	UserModel.findOne({ email: data.email }).populate('favorites')
 	.exec(function(err,user){
 		if(err) console.log(err);

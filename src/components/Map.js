@@ -40,18 +40,19 @@ class Map extends React.Component {
     };
   }
 
+  markers = []
+
   componentWillMount = () => {
     axios.get('/api/restaurants').then(response => {
       this.setState({
         rests: {
           features: response.data.restaurants,
           type: "FeatureCollection"
-        }
+        },
+        all: response.data.restaurants
       });
       this.componentDidMount();
-      const user = {email: this.props.email};
       const email = this.props.email;
-      console.log(user);
       axios.post('/api/users/favorites',{ user:{ email:email } }).then(resp => {
         this.setState({
           favs: resp.data.favorities
@@ -74,6 +75,60 @@ class Map extends React.Component {
     return this.state.rests.features;
   }
 
+  setRests=(r)=>{
+    var rests;
+    switch(r){
+      case 'all':
+        rests = this.state.all;
+        this.setState({
+          rests: {...this.state.rests, features:this.state.all}
+        });
+        break;
+      case 'favs':
+        rests = this.state.favs;
+        this.setState({
+          rests: {...this.state.rests, features:this.state.favs}
+        });
+        break;
+      default:
+        console.log('ENTRO A DEFAULT EN MAP');
+        break;
+    }
+    // var markers = document.getElementsByClassName('marker');
+    this.setMarkers(rests)
+  }
+
+  setMarkers=(rests) => {
+    this.markers.forEach(function(ma){
+      ma.remove();
+    });
+    var markers = [];
+    var map = this.map;
+    // const { rests } = this.state;
+    var flyAndPopUp = this.flyAndPopUp;
+    rests.forEach(function(marker,i) {
+      // Create a div element for the marker
+      var el = document.createElement('div');
+      // Add a class called 'marker' to each div
+      el.className = 'marker';
+      el.addEventListener('click', function(e) {
+        // var activeItem = document.getElementsByClassName('active');
+        // 1. Fly to the point
+        flyAndPopUp(marker);
+        // 3. Highlight listing in sidebar (and remove highlight for all other item)
+        e.stopPropagation();
+      });
+      // By default the image for your custom marker will be anchored
+      // by its center. Adjust the position accordingly
+      // Create the custom markers, set their position, and add to map
+      var m = new mapboxgl.Marker(el, { offset: [0, -23] })
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+      markers.push(m);
+    });
+    this.markers = markers;
+  }
+
   componentDidMount() {
     const { lng, lat, zoom, rests } = this.state;
     // console.log(rests);
@@ -87,6 +142,8 @@ class Map extends React.Component {
     var flyAndPopUp = this.flyAndPopUp;
     
     this.map = map;
+
+    var markers = [];
 
     map.on('load', function(e) {
       // Add the data to your map as a layer
@@ -117,9 +174,10 @@ class Map extends React.Component {
         // By default the image for your custom marker will be anchored
         // by its center. Adjust the position accordingly
         // Create the custom markers, set their position, and add to map
-        new mapboxgl.Marker(el, { offset: [0, -23] })
+        var m = new mapboxgl.Marker(el, { offset: [0, -23] })
           .setLngLat(marker.geometry.coordinates)
           .addTo(map);
+        markers.push(m);
       });
     });
 
@@ -135,15 +193,14 @@ class Map extends React.Component {
 
     map.on('click', () => {
       var activeItem = document.getElementsByClassName('active');
-    if (activeItem[0]) {
-      activeItem[0].classList.remove('active');
-    }
-
+      if (activeItem[0]) {
+        activeItem[0].classList.remove('active');
+      }
       var popUps = document.getElementsByClassName('mapboxgl-popup');
       // Check if there is already a popup on the map and if so, remove it ReactDOM.unmountComponentAtNode(popUps[0]);
       if (popUps[0]) popUps[0].remove();
     });
-
+    this.markers = markers;
   }
 
   flyAndPopUp=(clickedPoint)=>{
@@ -191,13 +248,13 @@ class Map extends React.Component {
   }
 
   render() {
-    const { lng, lat, zoom, rests } = this.state;
+    const { lng, lat, zoom } = this.state;
 
     return (
       <Grid>
         <div className="principal">
           <Grid.Column width={4}>
-            <List fly={this.flyTo} rests={rests.features} getRests={this.getRests}/>
+            <List fly={this.flyTo} setRests={this.setRests} getRests={this.getRests}/>
             </Grid.Column>
             <Grid.Column width={11}>
             <div className='pad2'>
