@@ -248,22 +248,13 @@ class Map extends React.Component {
   }
 
   isFav = (rest) => {
-    var favs =this.state.favs;console.log('---- CLICK -----')
     var fav = false;
     this.state.favs.forEach(function(r){
-      console.log(rest.properties.name+' = '+r.properties.name);
-        console.log(rest._id == r._id);
       if(rest._id === r._id){
         fav = true;
       }
-      // if(favs.includes(rest)){
-      //   console.log(rest.properties.name+' = '+r.properties.name);
-      //   console.log(rest._id == r._id);
-      // }
     })
     return fav;
-    
-    // return this.state.favs.includes(rest);
   }
 
   render() {

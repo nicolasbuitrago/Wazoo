@@ -39,7 +39,9 @@ a:hover {
   left: 0;
   overflow: hidden;
   border-right: 1px solid rgba(0, 0, 0, 0.25);
-  height:100%;
+  height: auto;
+  bottom: 0;
+  top: 60px;
 }
 
 /* .pad2 {
@@ -78,9 +80,14 @@ a:hover {
 }
 
 .listings {
-  height: 100%;
+  position: fixed;
+  /* height: 70%; */
   overflow: auto;
+  width: 30%;
   /* padding-bottom: 60px; */
+  height: auto;
+  bottom: 0;
+  top: 180px;
 }
 
 .listings .item {
