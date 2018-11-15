@@ -79,6 +79,13 @@ a:hover {
   margin-top: -0.5rem;
 }
 
+.sidebar .ui.grid .six .bLeft{
+  /* position: relative; */
+  float: right;
+  /* left:auto;
+  right:30%; */
+}
+
 .listings {
   position: fixed;
   /* height: 70%; */
