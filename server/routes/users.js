@@ -63,10 +63,9 @@ router.post('/favorites/add',(req,res) =>{
 				});
 			}
 		});
-		
 	}) 
-	
 });
+
 
 router.post('/favorites/remove',(req,res) =>{
 	var idRestaurant = req.body.id;
@@ -89,6 +88,7 @@ router.post('/favorites/remove',(req,res) =>{
 				if(err) console.log(err);
 				res.json({ favorites: user.favorites});
 			});
+
 		});
 		
 	}) 
