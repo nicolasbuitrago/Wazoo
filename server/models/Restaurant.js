@@ -9,7 +9,9 @@ const RestaurantSchema = mongoose.Schema({
 		address: String,
 		city: String,
 		state: String,
-		country: String
+		country: String,
+		score: Number,
+		votes:Number
 	},
  	geometry:{
 		type: {

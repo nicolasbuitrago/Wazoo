@@ -4,6 +4,7 @@ import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
 import SignupPage from "./components/pages/SignupPage";
 import DashboardPage from "./components/pages/DashboardPage";
+import RestaurantPage from "./components/pages/RestaurantPage";
 import UserRoute from './components/routes/UserRoute';
 import GuestRoute from './components/routes/GuestRoute';
 import PropTypes from 'prop-types';
@@ -19,6 +20,7 @@ const App = ({ location }) => (
     <GuestRoute location={location} path="/login" component={LoginPage} exact/>
     <GuestRoute location={location} path="/signup" component={SignupPage} exact/>
     <UserRoute location={location} path="/dashboard" component={DashboardPage} exact/>
+    <UserRoute location={location} path="/restaurant" component={RestaurantPage} exact/>
   </div>
 );
 
