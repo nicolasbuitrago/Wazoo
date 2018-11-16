@@ -1,6 +1,15 @@
 import React from 'react';
 import { Grid, Search, Button, Icon } from 'semantic-ui-react';
 
+// This will let you use the .remove() function later on
+if (!('remove' in Element.prototype)) {
+    Element.prototype.remove = function() {
+      if (this.parentNode) {
+        this.parentNode.removeChild(this);
+      }
+    };
+  }
+
 class Restaurant extends React.Component {
 
     onClick=()=>{
@@ -25,6 +34,9 @@ class Restaurant extends React.Component {
             :
             <Icon name='heart' className='fav' color='grey' onClick={this.addFav} />
             }
+            {/* <div id={'detail-'+this.props.id} className='details invisible'>
+
+            </div> */}
         </div>
         );
     }
@@ -60,6 +72,7 @@ class List extends React.Component {
                 addFav={this.props.addFav}
                 removeFav={this.props.removeFav}
                 _id={currentFeature._id}
+                data={currentFeature}
                 />
             );
         }
@@ -69,11 +82,13 @@ class List extends React.Component {
     setAll=()=> {
         this.props.setRests('all');
         this.createList();
+        this.props.closeDetails();
     }
 
     setFavs=()=> {
         this.props.setRests('favs');
         this.createList();
+        this.props.closeDetails();
     }
 
   render() {
@@ -93,6 +108,7 @@ class List extends React.Component {
             </Grid.Column>
         </Grid>
         <div id='listings' className='listings'>{this.createList()}</div>
+        <div id='details' className='details invisible'></div>
     </div>
     );
   }

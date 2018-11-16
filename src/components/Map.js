@@ -192,20 +192,32 @@ class Map extends React.Component {
     });
 
     map.on('click', () => {
-      var activeItem = document.getElementsByClassName('active');
-      if (activeItem[0]) {
-        activeItem[0].classList.remove('active');
-      }
-      var popUps = document.getElementsByClassName('mapboxgl-popup');
-      // Check if there is already a popup on the map and if so, remove it ReactDOM.unmountComponentAtNode(popUps[0]);
-      if (popUps[0]) popUps[0].remove();
+      this.closeDetails();
     });
+
     this.markers = markers;
+  }
+
+  closeDetails = () => {
+    var activeItem = document.getElementsByClassName('active');
+    if (activeItem[0]) {
+      activeItem[0].classList.remove('active');
+    }
+    var popUps = document.getElementsByClassName('mapboxgl-popup');
+    // Check if there is already a popup on the map and if so, remove it ReactDOM.unmountComponentAtNode(popUps[0]);
+    if (popUps[0]) popUps[0].remove();
+
+    var listings = document.getElementById('listings');
+    if(listings.classList.contains('final')) listings.classList.remove('final');
+    var details = document.getElementById('details');
+    if(!details.classList.contains('invisible')) details.classList.add('invisible');
   }
 
   flyAndPopUp=(clickedPoint)=>{
     const map = this.map;
     const {rests} = this.state;
+    const props = clickedPoint.properties;
+
     // 1. Fly to the point
     map.flyTo({
       center: clickedPoint.geometry.coordinates,
@@ -219,8 +231,8 @@ class Map extends React.Component {
 
     var popup = new mapboxgl.Popup({ closeOnClick: false })
         .setLngLat(clickedPoint.geometry.coordinates)
-        .setHTML('<h4>'+clickedPoint.properties.name+'</h4>' +
-          '<h6>' + clickedPoint.properties.address + '</h6>');
+        .setHTML('<h4>'+props.name+'</h4>' +
+          '<h6>' + props.address + '</h6>');
     popup.addTo(map);
     // 3. Highlight listing in sidebar (and remove highlight for all other items)
     var activeItem = document.getElementsByClassName('active');
@@ -228,7 +240,7 @@ class Map extends React.Component {
       activeItem[0].classList.remove('active');
     }
     // Find the index of the store.features that corresponds to the clickedPoint that fired the event listener
-    var selectedFeature = clickedPoint.properties.name;
+    var selectedFeature = props.name;
     var selectedFeatureIndex;
     for (var i = 0; i < rests.features.length; i++) {
       if (rests.features[i].properties.name === selectedFeature) {
@@ -238,6 +250,18 @@ class Map extends React.Component {
     // Select the correct list item using the found index and add the active class
     var listing = document.getElementById('item-' + selectedFeatureIndex);
     listing.classList.add('active');
+
+    var listings = document.getElementById('listings');
+    if(!listings.classList.contains('final')) listings.classList.add('final');
+    var details = document.getElementById('details');
+    if(details.classList.contains('invisible')) details.classList.remove('invisible');
+    details.innerHTML = '<h2>'+props.name+'</h2>'+
+        '<h4>'+props.description+'</h4>'+
+        '<p><b>Phone: </b>'+props.phone+'</p>'+
+        '<p><b>Address: </b>'+props.address+'</p>'+
+        '<p><b>City: </b>'+props.city+'</p>'+
+        '<p><b>State: </b>'+props.state+'</p>'+
+        '<p><b>Country: </b>'+props.country+'</p>';
   }
 
   flyTo=(id)=>{
@@ -290,7 +314,8 @@ class Map extends React.Component {
               getRests={this.getRests} 
               isFav={this.isFav} 
               addFav={this.addFav} 
-              removeFav={this.removeFav} 
+              removeFav={this.removeFav}
+              closeDetails={this.closeDetails}
               />
             </Grid.Column>
             <Grid.Column width={11}>

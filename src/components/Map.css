@@ -97,6 +97,10 @@ a:hover {
   top: 180px;
 }
 
+.sidebar .final{
+  bottom: 230px;
+}
+
 .listings .item {
   display: block;
   border-bottom: 1px solid #eee;
@@ -117,6 +121,36 @@ a:hover {
   padding-left: .78571429em;
   cursor: pointer;
 }
+
+.sidebar .details{
+  position: fixed;
+  /* height: 70%; */
+  overflow: auto;
+  width: 30%;
+  /* padding-bottom: 60px; */
+  height: 230px;
+  bottom: 0;
+  top: auto;
+}
+
+.sidebar .details h2{
+  background: #8cc63f;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+.sidebar .details h4{
+  margin-top: 5px;
+  padding-left: 10px;
+}
+
+.sidebar .details p{
+  padding-left: 20px;
+  margin-bottom: 5px;
+}
+
+.sidebar .details.invisible { display:none; }
 
 .listings .item .title small { font-weight: 400; }
 
