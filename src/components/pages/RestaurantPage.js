@@ -8,15 +8,30 @@ class RestaurantPage extends React.Component {
     state = {  }
 
     render() { 
+        
         return (
             <div>
-                {this.props.location.state? this.props.location.state.fromDashboard? <NavBar/> : <Redirect to='/'/> : <Redirect to='/'/>}
+                <NavBar/>
                 <Grid>
-                    <p>HelloWorld</p>
+                    <p>{this.props.properties.name}</p>
                 </Grid>
             </div>
-         );
+        );
+    }
+}
+
+class Redirection extends React.Component {
+
+    state = {  }
+
+    render() { 
+        
+        return (
+            <div>
+                {this.props.location.state? this.props.location.state.fromDashboard? <RestaurantPage properties={this.props.location.state.props} /> : <Redirect to='/'/> : <Redirect to='/'/>}
+            </div>
+        );
     }
 }
  
-export default RestaurantPage;
+export default Redirection;

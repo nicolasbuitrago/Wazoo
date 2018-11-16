@@ -122,7 +122,10 @@ const Details = (props) => (
       <Link
         to={{
           pathname: "/restaurant",
-          state: { fromDashboard: true }
+          state: { 
+            fromDashboard: true,
+            props: props
+         }
         }}
       >
         <h2>{props.name}</h2>

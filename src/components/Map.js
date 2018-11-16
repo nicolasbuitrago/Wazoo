@@ -262,7 +262,7 @@ class Map extends React.Component {
     
     this.properties = props;
 
-    var listings = document.getElementById('listings');
+    // var listings = document.getElementById('listings');
     if(!this.listingsRef.classList.contains('final')) this.listingsRef.classList.add('final');
     var details = document.getElementById('details');
     if(details.classList.contains('invisible')) details.classList.remove('invisible');
