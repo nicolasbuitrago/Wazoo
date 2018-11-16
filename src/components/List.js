@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Grid, Search, Button, Icon } from 'semantic-ui-react';
 
 // This will let you use the .remove() function later on
@@ -107,11 +108,32 @@ class List extends React.Component {
                 <Button className='bLeft' size='tiny' attached='left' onClick={this.setAll} >All</Button>
             </Grid.Column>
         </Grid>
-        <div id='listings' className='listings'>{this.createList()}</div>
-        <div id='details' className='details invisible'></div>
+        <div id='listings' className='listings' ref={this.props.setListingsRef} >{this.createList()}</div>
+        <div id='details' className='details invisible' ref={this.props.setDetailRef} >
+            {this.props.getProperties()? Details(this.props.getProperties()) : <div></div> }
+        </div>
     </div>
     );
   }
 }
+
+const Details = (props) => (
+    <div>
+      <Link
+        to={{
+          pathname: "/restaurant",
+          state: { fromDashboard: true }
+        }}
+      >
+        <h2>{props.name}</h2>
+      </Link>
+      <h4>{props.description}</h4>
+      <p><b>Phone: </b>{props.phone}</p>
+      <p><b>Address: </b>{props.address}</p>
+      <p><b>City: </b>{props.city}</p>
+      <p><b>State: </b>{props.state}</p>
+      <p><b>Country: </b>{props.country}</p>
+    </div>
+  );
 
 export default List;

@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl';
 // import PropTypes from 'prop-types';
 //import {BrowserRouter, Route} from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import List from './List';
 // import { fetchRestaurants } from "../actions/restaurants";
 import axios from 'axios';
@@ -37,6 +38,14 @@ class Map extends React.Component {
       },
       all:[],
       favs:[]
+    };
+    this.detailsRef = null;
+    this.setDetailsRef = element => {
+      this.detailsRef = element;
+    };
+    this.listingsRef = null;
+    this.setListingsRef = element => {
+      this.listingsRef = element;
     };
   }
 
@@ -250,18 +259,20 @@ class Map extends React.Component {
     // Select the correct list item using the found index and add the active class
     var listing = document.getElementById('item-' + selectedFeatureIndex);
     listing.classList.add('active');
+    
+    this.properties = props;
 
     var listings = document.getElementById('listings');
-    if(!listings.classList.contains('final')) listings.classList.add('final');
+    if(!this.listingsRef.classList.contains('final')) this.listingsRef.classList.add('final');
     var details = document.getElementById('details');
     if(details.classList.contains('invisible')) details.classList.remove('invisible');
-    details.innerHTML = '<h2>'+props.name+'</h2>'+
-        '<h4>'+props.description+'</h4>'+
-        '<p><b>Phone: </b>'+props.phone+'</p>'+
-        '<p><b>Address: </b>'+props.address+'</p>'+
-        '<p><b>City: </b>'+props.city+'</p>'+
-        '<p><b>State: </b>'+props.state+'</p>'+
-        '<p><b>Country: </b>'+props.country+'</p>';
+    // details.innerHTML = '<h2>'+props.name+'</h2>'+
+    //     '<h4>'+props.description+'</h4>'+
+    //     '<p><b>Phone: </b>'+props.phone+'</p>'+
+    //     '<p><b>Address: </b>'+props.address+'</p>'+
+    //     '<p><b>City: </b>'+props.city+'</p>'+
+    //     '<p><b>State: </b>'+props.state+'</p>'+
+    //     '<p><b>Country: </b>'+props.country+'</p>';
   }
 
   flyTo=(id)=>{
@@ -301,6 +312,10 @@ class Map extends React.Component {
     );
   }
 
+  getProperties = () => {
+    return this.properties;
+  }
+
   render() {
     const { lng, lat, zoom } = this.state;
 
@@ -316,6 +331,9 @@ class Map extends React.Component {
               addFav={this.addFav} 
               removeFav={this.removeFav}
               closeDetails={this.closeDetails}
+              setDetailsRef={this.setDetailsRef}
+              setListingsRef={this.setListingsRef}
+              getProperties={this.getProperties}
               />
             </Grid.Column>
             <Grid.Column width={11}>
@@ -332,6 +350,25 @@ class Map extends React.Component {
     );
   }
 }
+
+const Details = (props) => (
+  <div>
+    <Link
+      to={{
+        pathname: "/restaurant",
+        state: { fromDashboard: true }
+      }}
+    >
+      <h2>{props.name}</h2>
+    </Link>
+    <h4>{props.description}</h4>
+    <p><b>Phone: </b>{props.phone}</p>
+    <p><b>Address: </b>{props.address}</p>
+    <p><b>City: </b>{props.city}</p>
+    <p><b>State: </b>{props.state}</p>
+    <p><b>Country: </b>{props.country}</p>
+  </div>
+);
 
 // Map.propTypes = {
 //   fetchRestaurants: PropTypes.func.isRequired
