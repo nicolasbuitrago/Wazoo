@@ -8,12 +8,15 @@ import './RestaurantPage.css'; // Imported css
 
 class RestaurantPage extends React.Component {
 
-    state = {
-        reaction: false,
-        isLike: false,
-        likes: 0,
-        dislikes: 0
-     }
+    constructor(props) {
+        super(props);
+        this.state = {
+            reaction: false,
+            isLike: false,
+            likes: 0,
+            dislikes: 0
+        };
+    }    
 
     componentWillMount = () => {
         const { props, email } = this.props.state;
@@ -23,12 +26,13 @@ class RestaurantPage extends React.Component {
                 likes:resp.likes,
                 dislikes:resp.dislikes
               });
-
-            if( !resp.reaction === null ){
+            // console.log(resp.reaction);
+            if(resp.reaction){
+                // console.log('ENTRO');
                 this.setState({
                     reaction: true,
                     isLike: resp.reaction.reaction
-                  });
+                });
             }
         });
     }
@@ -41,13 +45,13 @@ class RestaurantPage extends React.Component {
                 this.setState({
                     reaction: true,
                     isLike: true,
-                    like:num
+                    likes:num
                 });
             }else{
                 this.setState({
                     reaction: true,
                     isLike: false,
-                    dislike:num
+                    dislikes:num
                 });
             }
         });
@@ -55,13 +59,19 @@ class RestaurantPage extends React.Component {
 
     like = () => {
         this.reaction(true);
-        // this.setState({
-        //     isLike
-        // })
+        // const { likes }
+        this.setState({
+            reaction: true,
+            isLike:true
+        });
     }
 
     dislike = () => {
-
+        this.reaction(false);
+        this.setState({
+            reaction: true,
+            isLike:false
+        });
     }
 
     render() {
