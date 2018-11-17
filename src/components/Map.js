@@ -4,7 +4,7 @@ import mapboxgl from 'mapbox-gl';
 // import PropTypes from 'prop-types';
 //import {BrowserRouter, Route} from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import List from './List';
 // import { fetchRestaurants } from "../actions/restaurants";
 import axios from 'axios';
@@ -226,6 +226,7 @@ class Map extends React.Component {
     const map = this.map;
     const {rests} = this.state;
     const props = clickedPoint.properties;
+    props._id = clickedPoint._id;
 
     // 1. Fly to the point
     map.flyTo({

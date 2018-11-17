@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/users');
 const restaurantRoutes = require('./routes/restaurants');
 const authRoutes = require('./routes/auth');
+const reactionRoutes = require('./routes/reactions');
 
 
 app.use(express.json());
@@ -32,6 +33,7 @@ app.get('/', function(req, res) {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/restaurants', restaurantRoutes);
+app.use('/api/reactions', reactionRoutes);
 
 mongoose.set('useCreateIndex', true);
 

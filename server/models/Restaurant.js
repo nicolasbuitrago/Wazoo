@@ -13,11 +13,11 @@ const RestaurantSchema = mongoose.Schema({
 		country: String,
 		image: String,
 		likes: {
-			whos:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+			whos:[{ type: Schema.Types.ObjectId, ref: 'Reaction' }],
 			num: Number
 		},
 		dislikes: {
-			whos:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+			whos:[{ type: Schema.Types.ObjectId, ref: 'Reaction' }],
 			num: Number
 		}
 	},

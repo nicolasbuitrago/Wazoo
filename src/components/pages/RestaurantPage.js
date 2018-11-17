@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from "react-router-dom";
+import axios from 'axios';
 import { Grid, Image, Segment, Button } from 'semantic-ui-react';
 import NavBar from '../NavBar';
 
@@ -7,9 +8,64 @@ import './RestaurantPage.css'; // Imported css
 
 class RestaurantPage extends React.Component {
 
-    state = {  }
+    state = {
+        reaction: false,
+        isLike: false,
+        likes: 0,
+        dislikes: 0
+     }
 
-    render() { 
+    componentWillMount = () => {
+        const { props, email } = this.props.state;
+        axios.post('/api/reactions/get', {id:props._id, email:email}).then(response => {
+            const { resp } = response.data;
+            this.setState({
+                likes:resp.likes,
+                dislikes:resp.dislikes
+              });
+
+            if( !resp.reaction === null ){
+                this.setState({
+                    reaction: true,
+                    isLike: resp.reaction.reaction
+                  });
+            }
+        });
+    }
+
+    reaction = (reaction) => {
+        const { props, email } = this.props.state;
+        axios.post('/api/reactions/add', {id:props._id, email:email, reaction:reaction}).then(response => {
+            const { num } = response.data;
+            if( reaction ){
+                this.setState({
+                    reaction: true,
+                    isLike: true,
+                    like:num
+                });
+            }else{
+                this.setState({
+                    reaction: true,
+                    isLike: false,
+                    dislike:num
+                });
+            }
+        });
+    }
+
+    like = () => {
+        this.reaction(true);
+        // this.setState({
+        //     isLike
+        // })
+    }
+
+    dislike = () => {
+
+    }
+
+    render() {
+        const { reaction, isLike, likes, dislikes } = this.state;
         const { props } = this.props.state;
         return (
             <div>
@@ -38,22 +94,52 @@ class RestaurantPage extends React.Component {
                             <h3>Share your opinion:</h3>
                         </Grid.Row>
                         <Grid.Row>
-                            <Button
-                                className='reaction'
-                                content='Like'
-                                icon='thumbs up outline'
-                                label={{ as: 'a', basic: true, content: '2,048' }}
-                                labelPosition='right'
-                            />
+                            {isLike && reaction?
+                                <Button
+                                    className='reaction'
+                                    content='Like'
+                                    icon='thumbs up outline'
+                                    label={{ as: 'a', basic: true, content: likes }}
+                                    labelPosition='right'
+                                    disabled={reaction}
+                                    onClick={this.like}
+                                    color='blue'
+                                />
+                            :
+                                <Button
+                                    className='reaction'
+                                    content='Like'
+                                    icon='thumbs up outline'
+                                    label={{ as: 'a', basic: true, content: likes }}
+                                    labelPosition='right'
+                                    disabled={reaction}
+                                    onClick={this.like}
+                                />
+                            }
                         </Grid.Row>
                         <Grid.Row>
-                            <Button
-                                className='reaction'
-                                content='Dislike'
-                                icon='thumbs down outline'
-                                label={{ as: 'a', basic: true, content: '2,048' }}
-                                labelPosition='right'
-                            />
+                            {!isLike && reaction?
+                                <Button
+                                    className='reaction'
+                                    content='Dislike'
+                                    icon='thumbs down outline'
+                                    label={{ as: 'a', basic: true, content: dislikes }}
+                                    labelPosition='right'
+                                    disabled={reaction}
+                                    onClick={this.dislike}
+                                    color='red'
+                                />
+                            :
+                                <Button
+                                    className='reaction'
+                                    content='Dislike'
+                                    icon='thumbs down outline'
+                                    label={{ as: 'a', basic: true, content: dislikes }}
+                                    labelPosition='right'
+                                    disabled={reaction}
+                                    onClick={this.dislike}
+                                />
+                            }
                         </Grid.Row>
                     </Grid.Column>
                 </Grid>
