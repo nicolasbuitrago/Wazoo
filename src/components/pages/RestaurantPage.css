@@ -1,0 +1,50 @@
+/* .grid.ui.container {
+    background: #eee;
+} */
+
+/* .column.four img{
+    margin: auto 0;
+
+} */
+
+.ui.segment.title{
+    background: rgb(138, 204, 5);
+    color: #fff;
+}
+
+.ui.segment.props{
+    background: rgb(245, 240, 240);
+} 
+
+.ui.segment.props h4{
+    margin-bottom: 0.8rem;
+} 
+
+.ui.segment.props p{
+    margin-bottom: 0.4rem;
+} 
+
+.column .row h3{
+    margin-bottom: 1rem;
+}
+
+.ui.right.labeled.button.reaction{
+    margin-bottom: 1rem;
+}
+
+.row .button .button.reaction{
+    width: 100px;
+    height: 40px;
+}
+
+.container.commentsSection{
+    background: #e3f2fd;
+}
+
+.container.commentsSection .commentsTitle h3{
+    margin-left:0.4rem;
+}
+
+.container.commentsSection .row.comments{
+    margin-left: 1.4rem;
+}

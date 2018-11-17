@@ -15,11 +15,13 @@ router.get('/getAllRestaurants',(req,res,next) =>{
 	})
 
 })
+
 router.post('/search',(req,res,next) =>{
 	res.status(200).json({
 		message: 'looking for ' + req.body.name
 	})
 })
+
 router.post('/addRestaurant',(req,res,next) =>{
 	var address = req.body.address;
 	RestaurantModel.find(function(err,existingRestaurants){

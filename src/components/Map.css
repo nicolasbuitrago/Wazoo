@@ -39,7 +39,9 @@ a:hover {
   left: 0;
   overflow: hidden;
   border-right: 1px solid rgba(0, 0, 0, 0.25);
-  height:100%;
+  height: auto;
+  bottom: 0;
+  top: 60px;
 }
 
 /* .pad2 {
@@ -77,10 +79,26 @@ a:hover {
   margin-top: -0.5rem;
 }
 
+.sidebar .ui.grid .six .bLeft{
+  /* position: relative; */
+  float: right;
+  /* left:auto;
+  right:30%; */
+}
+
 .listings {
-  height: 100%;
+  position: fixed;
+  /* height: 70%; */
   overflow: auto;
+  width: 30%;
   /* padding-bottom: 60px; */
+  height: auto;
+  bottom: 0;
+  top: 180px;
+}
+
+.sidebar .final{
+  bottom: 230px;
 }
 
 .listings .item {
@@ -88,7 +106,6 @@ a:hover {
   border-bottom: 1px solid #eee;
   padding: 10px;
   text-decoration: none;
-  cursor: pointer;
 }
 
 .listings .item:last-child { border-bottom: none; }
@@ -97,11 +114,48 @@ a:hover {
   display: inline-block;
   color: #00853e;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .listings .item .fav{
   padding-left: .78571429em;
+  cursor: pointer;
 }
+
+.sidebar .details{
+  position: fixed;
+  /* height: 70%; */
+  overflow: auto;
+  width: 30%;
+  /* padding-bottom: 60px; */
+  height: 230px;
+  bottom: 0;
+  top: auto;
+}
+
+.sidebar .details h2{
+  background: #8cc63f;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 0;
+  text-decoration: underline;
+}
+
+/* .sidebar .details h2:hover{
+  background: #3caf07;
+} */
+
+.sidebar .details h4{
+  margin-top: 5px;
+  padding-left: 10px;
+}
+
+.sidebar .details p{
+  padding-left: 20px;
+  margin-bottom: 5px;
+}
+
+.sidebar .details.invisible { display:none; }
 
 .listings .item .title small { font-weight: 400; }
 
