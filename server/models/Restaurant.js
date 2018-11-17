@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const RestaurantSchema = mongoose.Schema({   
  	type: String,
@@ -10,9 +11,15 @@ const RestaurantSchema = mongoose.Schema({
 		city: String,
 		state: String,
 		country: String,
-		likes: Number,
-		dislikes: Number,
-		image: String
+		image: String,
+		likes: {
+			whos:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+			num: Number
+		},
+		dislikes: {
+			whos:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+			num: Number
+		}
 	},
  	geometry:{
 		type: {

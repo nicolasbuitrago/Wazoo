@@ -110,24 +110,24 @@ class List extends React.Component {
         </Grid>
         <div id='listings' className='listings' ref={this.props.setListingsRef} >{this.createList()}</div>
         <div id='details' className='details invisible' ref={this.props.setDetailRef} >
-            {this.props.getProperties()? Details(this.props.getProperties()) : <div></div> }
+            {this.props.getProperties()? Details(this.props.getProperties(),this.props.email) : <div></div> }
         </div>
     </div>
     );
   }
 }
 
-const Details = (props) => (
+const Details = (props, email) => (
     <div>
       <Link
         to={{
           pathname: "/restaurant",
           state: { 
             fromDashboard: true,
-            props: props
+            props: props,
+            email: email
          }
-        }}
-      >
+        }}>
         <h2>{props.name}</h2>
       </Link>
       <h4>{props.description}</h4>

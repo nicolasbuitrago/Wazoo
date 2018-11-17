@@ -10,31 +10,31 @@ class RestaurantPage extends React.Component {
     state = {  }
 
     render() { 
-        const { properties } = this.props;
+        const { props } = this.props.state;
         return (
             <div>
                 <NavBar/>
                 <Grid className='ui container'>
                     <Grid.Column width={4}>
-                        <Image src={properties.image} />
+                        <Image src={props.image} />
                     </Grid.Column>
                     <Grid.Column width={9}>
                         <Segment.Group>
                             <Segment className='title'>
-                                <h2>{properties.name}</h2>
+                                <h2>{props.name}</h2>
                             </Segment>
                             <Segment className='props'>
-                                <h4>{properties.description}</h4>
-                                <p><b>Phone: </b>{properties.phone}</p>
-                                <p><b>Address: </b>{properties.address}</p>
-                                <p><b>City: </b>{properties.city}</p>
-                                <p><b>State: </b>{properties.state}</p>
-                                <p><b>Country: </b>{properties.country}</p>
+                                <h4>{props.description}</h4>
+                                <p><b>Phone: </b>{props.phone}</p>
+                                <p><b>Address: </b>{props.address}</p>
+                                <p><b>City: </b>{props.city}</p>
+                                <p><b>State: </b>{props.state}</p>
+                                <p><b>Country: </b>{props.country}</p>
                             </Segment>
                         </Segment.Group>
                     </Grid.Column>
                     <Grid.Column width={3}>
-                        <Grid.Row>
+                        <Grid.Row><p></p>
                             <h3>Share your opinion:</h3>
                         </Grid.Row>
                         <Grid.Row>
@@ -78,7 +78,7 @@ class Redirection extends React.Component {
         
         return (
             <div>
-                {this.props.location.state? this.props.location.state.fromDashboard? <RestaurantPage properties={this.props.location.state.props} /> : <Redirect to='/'/> : <Redirect to='/'/>}
+                {this.props.location.state? this.props.location.state.fromDashboard? <RestaurantPage state={this.props.location.state} /> : <Redirect to='/'/> : <Redirect to='/'/>}
             </div>
         );
     }

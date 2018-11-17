@@ -323,7 +323,8 @@ class Map extends React.Component {
       <Grid>
         <div className="principal">
           <Grid.Column width={4}>
-            <List 
+            <List
+              email={this.props.email}
               fly={this.flyTo} 
               setRests={this.setRests} 
               getRests={this.getRests} 
@@ -350,25 +351,6 @@ class Map extends React.Component {
     );
   }
 }
-
-const Details = (props) => (
-  <div>
-    <Link
-      to={{
-        pathname: "/restaurant",
-        state: { fromDashboard: true }
-      }}
-    >
-      <h2>{props.name}</h2>
-    </Link>
-    <h4>{props.description}</h4>
-    <p><b>Phone: </b>{props.phone}</p>
-    <p><b>Address: </b>{props.address}</p>
-    <p><b>City: </b>{props.city}</p>
-    <p><b>State: </b>{props.state}</p>
-    <p><b>Country: </b>{props.country}</p>
-  </div>
-);
 
 // Map.propTypes = {
 //   fetchRestaurants: PropTypes.func.isRequired
