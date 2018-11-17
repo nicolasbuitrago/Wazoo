@@ -57,14 +57,14 @@ class RestaurantPage extends React.Component {
                         </Grid.Row>
                     </Grid.Column>
                 </Grid>
-                <Grid className='container commentsSection'>
+                {/* <Grid className='container commentsSection'>
                     <Grid.Row className='commentsTitle'>
                         <h3>Comments</h3>
                     </Grid.Row>
                     <Grid.Row className='comments'>
                         <h4>Firts Comment</h4>
                     </Grid.Row>
-                </Grid>
+                </Grid> */}
             </div>
         );
     }
