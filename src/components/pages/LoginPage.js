@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import LoginForm from "../forms/LoginForm";
 import { login } from "../../actions/auth";
+import { Grid, Image, Header } from 'semantic-ui-react';
 
 class LoginPage extends React.Component {
   submit = data =>
@@ -10,11 +11,12 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Login page</h1>
-
-        <LoginForm submit={this.submit} />
-      </div>
+      <Grid textAlign='center' style={{height:'100%', margin:'30px'}} verticalAlign='middle'>
+        <Header as='h2' color='green' textAlign='center'>
+          <Image src='/favicon.ico' /> Log-in now
+          <LoginForm submit={this.submit} />
+        </Header>
+      </Grid>      
     );
   }
 }
