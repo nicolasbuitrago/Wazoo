@@ -8,7 +8,7 @@ import {
   Header,
   Icon,
   Image,
-  List,
+  Link,
   Menu,
   Responsive,
   Segment,
@@ -87,8 +87,8 @@ class DesktopContainer extends Component {
                   Home
                 </Menu.Item>
                 <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed}>
-                  <a style={{color:'white'}} color='green' href="/login">Log in</a>
+                  <Button as='Link' inverted={!fixed} to='/login'>
+                    Log in
                   </Button>
                   <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
                     <a style={{color:'white'}} href="/signup">Signup</a>
