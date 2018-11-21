@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, Search, Button, Icon } from 'semantic-ui-react';
+import { Grid, Button, Icon } from 'semantic-ui-react';
 
 // This will let you use the .remove() function later on
 if (!('remove' in Element.prototype)) {
@@ -101,7 +101,7 @@ class List extends React.Component {
         <Grid columns={2}>
         <Grid.Column width={1}/>
             <Grid.Column width={8}>
-            <Search/>
+            {/* <Search/> */}
             </Grid.Column>
             <Grid.Column width={6}>
                 <Button className='bLeft' size='tiny' attached='right' onClick={this.setFavs} >Favs</Button>

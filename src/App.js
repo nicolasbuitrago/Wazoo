@@ -8,7 +8,6 @@ import RestaurantPage from "./components/pages/RestaurantPage";
 import UserRoute from './components/routes/UserRoute';
 import GuestRoute from './components/routes/GuestRoute';
 import PropTypes from 'prop-types';
-import SearchBar from './components/SearchBar';
 
 
 //import './App.css';                       // Imported css
@@ -16,7 +15,6 @@ import SearchBar from './components/SearchBar';
 const App = ({ location }) => (
   <div className=" ">
     <Route location={location} path="/" component={HomePage} exact/>
-    <Route location={location} path="/s" component={SearchBar} exact/>
     <GuestRoute location={location} path="/login" component={LoginPage} exact/>
     <GuestRoute location={location} path="/signup" component={SignupPage} exact/>
     <UserRoute location={location} path="/dashboard" component={DashboardPage} exact/>

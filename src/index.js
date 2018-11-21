@@ -11,7 +11,7 @@ import * as serviceWorker from './serviceWorker';
 import { userLoggedIn } from './actions/auth';
 import decode from "jwt-decode";
 
-import 'semantic-ui-css/semantic.min.css';
+// import 'semantic-ui-css/semantic.min.css';
 //import './index.css';
 
 const store = createStore(

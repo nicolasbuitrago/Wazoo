@@ -161,11 +161,10 @@ class RestaurantPage extends React.Component {
                                     labelPosition='right'
                                     disabled={reaction}
                                     onClick={this.dislike}/>
-}
+                            }
                         </Grid.Row>
                     </Grid.Column>
                 </Grid>
-                {}
             </div>
         );
     }
