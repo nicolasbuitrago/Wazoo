@@ -15,8 +15,11 @@ class SignupPage extends React.Component {
         <Grid textAlign='center' style={{height:'100%', margin:'30px'}} verticalAlign='middle'>
           <Header as='h2' color='green' textAlign='center'>
             <Image src='/favicon.ico' /> Sign-up now
-            <SignupForm submit={this.submit} />
+            
           </Header>
+          <Grid.Row>
+          <Header color='green'><SignupForm submit={this.submit} /></Header>
+          </Grid.Row>
         </Grid>  
       );
     }

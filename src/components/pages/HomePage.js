@@ -40,8 +40,8 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button color='green' size='huge'>
-      Get Started
+    <Button color='green' size='huge' as='a' href='/signup'>
+       Get Started
       <Icon name='right arrow' />
     </Button>
   </Container>
@@ -51,10 +51,7 @@ HomepageHeading.propTypes = {
   mobile: PropTypes.bool,
 }
 
-/* Heads up!
- * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
- * It can be more complicated, but you can create really flexible markup.
- */
+
 class DesktopContainer extends Component {
   state = {}
 

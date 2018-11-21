@@ -59,8 +59,8 @@ class SignupForm extends React.Component {
     render() {
         const { data, loading, errors } = this.state;
         return (
-            <Grid textAlign='center' style={{height:'100%'}} verticalAlign='middle'>
-                <Grid.Column style={{ maxWidth: 450 }}>
+            <Grid textAlign='center' style={{height:'100%', width:'400px'}} verticalAlign='middle'>
+                <Grid.Column style={{ maxWidth: 800 }}>
                     <Form size='large' onSubmit={this.onSubmit} loading={loading} >
                         {errors.global && (
                             <Message negative>
