@@ -13,19 +13,21 @@ class LoginPage extends React.Component {
 
     render() {
         return (
+            <div>
             <Grid
                 textAlign='center'
                 style={{
                   height: '100%',
-                  margin: '30px'
+                  'margin-top': '8em'
                 }}
                 verticalAlign='middle'>
                 <Header as='h2' color='green' textAlign='center'>
-                    <Image src='/favicon.ico'/>
-                    Log-in now
+                    <Image src='/imgs/wazoo.png' style={{'margin-right':'10px'}}/>
+                      Log-in now
                     <LoginForm submit={this.submit}/>
                 </Header>
             </Grid>
+             </div>
         );
     }
 }

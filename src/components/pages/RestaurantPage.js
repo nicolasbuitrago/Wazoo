@@ -20,14 +20,14 @@ class RestaurantPage extends React.Component {
 
     componentWillMount = () => {
         const {props, email} = this.props.state;
-        console.log(email); 
+        // console.log(email); 
         axios
             .post('/api/reactions/get', {
             id: props._id,
             email: email
         })
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 const {resp} = response.data;
                 this.setState({likes: resp.likes, dislikes: resp.dislikes});
                 if (resp.reaction) {
@@ -132,7 +132,7 @@ class RestaurantPage extends React.Component {
                                     labelPosition='right'
                                     disabled={reaction}
                                     onClick={this.like}/>
-}
+                            }
                         </Grid.Row>
                         <Grid.Row>
                             {!isLike && reaction

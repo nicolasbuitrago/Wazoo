@@ -14,7 +14,7 @@ if (!('remove' in Element.prototype)) {
 class Restaurant extends React.Component {
 
     onClick=()=>{
-        console.log(this.props.id);
+        // console.log(this.props.id);
         this.props.fly(this.props.id);
     }
 

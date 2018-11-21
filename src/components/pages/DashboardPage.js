@@ -26,7 +26,7 @@ class DashboardPage extends React.Component {
   // }
 
   click = () => {
-    console.log(this.props.email)
+    // console.log(this.props.email)
   }
 
   render() {
