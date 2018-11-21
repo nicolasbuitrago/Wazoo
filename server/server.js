@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 const p = __dirname.replace('/'+path.basename(__dirname),'/');
 
-
 const userRoutes = require('./routes/users');
 const restaurantRoutes = require('./routes/restaurants');
 const authRoutes = require('./routes/auth');
