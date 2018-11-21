@@ -5,6 +5,7 @@ import LoginPage from "./components/pages/LoginPage";
 import SignupPage from "./components/pages/SignupPage";
 import DashboardPage from "./components/pages/DashboardPage";
 import RestaurantPage from "./components/pages/RestaurantPage";
+import AccountPage from "./components/pages/AccountPage";
 import UserRoute from './components/routes/UserRoute';
 import GuestRoute from './components/routes/GuestRoute';
 import PropTypes from 'prop-types';
@@ -19,6 +20,7 @@ const App = ({ location }) => (
     <GuestRoute location={location} path="/signup" component={SignupPage} exact/>
     <UserRoute location={location} path="/dashboard" component={DashboardPage} exact/>
     <UserRoute location={location} path="/restaurant" component={RestaurantPage} exact/>
+    <UserRoute location={location} path="/account" component={AccountPage} exact/>
   </div>
 );
 

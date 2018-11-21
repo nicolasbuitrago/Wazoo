@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Grid, Message} from 'semantic-ui-react';
+import { Card, Grid } from 'semantic-ui-react';
 import NavBar from '../NavBar';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -49,14 +49,14 @@ class AccountPage extends React.Component {
                             image="https://semantic-ui.com/images/avatar2/large/matthew.png"
                             header={this.state.name.first + " " + this.state.name.last}
                             meta={this.state.email}
-                            description={this.state.address}></Card>
-                        <Message>
+                            description={'Address: '+this.state.address} />
+                        {/* <Message>
                             <a
                                 style={{
                                 color: 'green'
                             }}
                                 href='/login'>Set a new password</a>
-                        </Message>
+                        </Message> */}
                     </Grid.Column>
                 </Grid>
             </div>

@@ -19,6 +19,7 @@ const NavBar = ({ isAuthenticated, logout }) => (
       name='dashboard'
     />
     <Menu.Item
+      as={Link} to='/account' 
       name='cuenta'
     />
     <Menu.Item className="right logout" onClick={() => logout()}>
